@@ -32,7 +32,13 @@ const fallbackProjects = [
 ]
 
 export default async function ProjectsPage() {
-    const sanityProjects = await client.fetch<Project[]>(queries.allProjects)
+    let sanityProjects: Project[] = []
+    try {
+        sanityProjects = await client.fetch<Project[]>(queries.allProjects)
+    } catch (error) {
+        console.error('Failed to fetch projects from Sanity:', error)
+        // Fall back to static data during build if Sanity is unavailable
+    }
     // Use Sanity projects if available, otherwise use fallback (mapped to match structure)
     const displayProjects = sanityProjects.length > 0 ? sanityProjects : fallbackProjects
 
