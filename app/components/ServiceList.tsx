@@ -11,16 +11,14 @@ interface ServiceListProps {
 }
 
 const categoryTabs = [
-    { key: 'wedding', label: 'Wedding' },
-    { key: 'portrait', label: 'Portrait' },
-    { key: 'commercial', label: 'Commercial' },
-    { key: 'nature', label: 'Nature' },
-    { key: 'sports', label: 'Sports' },
-    { key: 'celebrations', label: 'Celebrations' },
+    { key: 'construction', label: 'Construction' },
+    { key: 'gis', label: 'GIS Services' },
+    { key: 'ai-data', label: 'AI & QA' },
+    { key: 'consultancy', label: 'Consultancy' },
 ]
 
 export default function ServiceList({ initialPackages }: ServiceListProps) {
-    const [activeCategory, setActiveCategory] = useState('wedding')
+    const [activeCategory, setActiveCategory] = useState('construction')
 
     const filteredPackages = initialPackages.filter(p => p.category === activeCategory)
 
@@ -119,7 +117,7 @@ export default function ServiceList({ initialPackages }: ServiceListProps) {
                                     : 'border border-white/30 hover:bg-white hover:text-black'
                                     }`}
                             >
-                                Book This Package
+                                Inquire Now
                             </Link>
                         </motion.div>
                     ))}

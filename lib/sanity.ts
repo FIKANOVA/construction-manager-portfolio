@@ -84,6 +84,21 @@ export interface ContactSettings {
   availabilityStatus?: string
 }
 
+export interface Profile {
+  _id: string
+  name: string
+  title?: string
+  bio?: string
+  portraitImage?: SanityImageSource
+  heroBackgroundImage?: SanityImageSource
+  interests?: string[]
+  skills?: string[]
+  hobbies?: { name: string; description: string }[]
+  education?: { degree: string; institution: string; period: string }[]
+  cvFile?: string
+  socialLinks?: { platform: string; url: string }[]
+}
+
 // GROQ Queries
 export const queries = {
   allProjects: `*[_type == "project"] | order(shootDate desc) {
@@ -113,5 +128,11 @@ export const queries = {
 
   contactSettings: `*[_type == "contactSettings"][0] {
     _id, email, phone, location, availabilityStatus
+  }`,
+
+  profile: `*[_type == "profile"][0] {
+    _id, name, title, bio, portraitImage, heroBackgroundImage,
+    interests, skills, hobbies, education, socialLinks,
+    "cvFile": cvFile.asset->url
   }`,
 }

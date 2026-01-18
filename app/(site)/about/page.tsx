@@ -2,11 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ScrollReveal from '@/app/components/ScrollReveal'
 import { siteConfig } from '@/site-config'
+import { client, queries, urlFor, type Profile } from '@/lib/sanity'
 
 export const revalidate = 60
 
-// Bruce Odhiambo's Profile Data
-const profile = {
+// Fallback data if Sanity fetch fails
+const fallbackProfile = {
     name: 'Bruce Odhiambo',
     title: 'Construction Manager | Digital Product Lead',
     bio: `I am a purpose-driven project enthusiast combining my background in construction management with ongoing training in project planning and digital product development to drive sustainable, inclusive, and tech-enabled solutions.
@@ -54,7 +55,32 @@ I've taken on roles (both paid and voluntary) that sharpen my skills in planning
     ],
 }
 
+async function getProfile(): Promise<Profile | null> {
+    try {
+        return await client.fetch(queries.profile)
+    } catch (error) {
+        console.error('Failed to fetch profile:', error)
+        return null
+    }
+}
+
 export default async function AboutPage() {
+    const sanityProfile = await getProfile()
+    const profile = sanityProfile || fallbackProfile
+
+    // Helper to get image URL
+    const getImageUrl = (image: any, fallback: string) => {
+        if (!image) return fallback
+        return urlFor(image).width(800).url()
+    }
+
+    const portraitUrl = getImageUrl(
+        (profile as Profile).portraitImage,
+        '/bruce-headshot.jpg'
+    )
+
+    const cvUrl = (profile as Profile).cvFile || '/BO_CV.pdf'
+
     return (
         <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
             {/* Split Layout Section */}
@@ -65,7 +91,7 @@ export default async function AboutPage() {
                         <ScrollReveal>
                             <div className="relative aspect-[3/4] overflow-hidden bg-white/5">
                                 <Image
-                                    src="/bruce-headshot.jpg"
+                                    src={portraitUrl}
                                     alt={profile.name}
                                     fill
                                     className="object-cover"
@@ -74,7 +100,7 @@ export default async function AboutPage() {
                             {/* CV Button */}
                             <div className="mt-6 flex gap-4">
                                 <Link
-                                    href="/BO_CV.pdf"
+                                    href={cvUrl}
                                     target="_blank"
                                     className="flex-1 py-3 bg-amber-400 text-black text-center text-sm tracking-[0.15em] uppercase hover:bg-amber-300 transition-colors"
                                 >
@@ -106,7 +132,7 @@ export default async function AboutPage() {
 
                         <ScrollReveal delay={0.1}>
                             <div className="prose prose-invert prose-lg">
-                                {profile.bio.split('\n\n').map((paragraph, index) => (
+                                {profile.bio?.split('\n\n').map((paragraph, index) => (
                                     <p key={index} className="text-white/70 leading-relaxed mb-6">
                                         {paragraph}
                                     </p>
@@ -115,21 +141,23 @@ export default async function AboutPage() {
                         </ScrollReveal>
 
                         {/* Current Interests */}
-                        <ScrollReveal delay={0.15}>
-                            <div className="pt-8 border-t border-white/10">
-                                <h3 className="text-xs tracking-[0.2em] text-white/40 uppercase mb-4">
-                                    Current Interests
-                                </h3>
-                                <ul className="space-y-2">
-                                    {profile.interests.map((interest, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-white/60">
-                                            <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
-                                            {interest}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </ScrollReveal>
+                        {profile.interests && profile.interests.length > 0 && (
+                            <ScrollReveal delay={0.15}>
+                                <div className="pt-8 border-t border-white/10">
+                                    <h3 className="text-xs tracking-[0.2em] text-white/40 uppercase mb-4">
+                                        Current Interests
+                                    </h3>
+                                    <ul className="space-y-2">
+                                        {profile.interests.map((interest, i) => (
+                                            <li key={i} className="flex items-center gap-3 text-white/60">
+                                                <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
+                                                {interest}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </ScrollReveal>
+                        )}
 
                         {/* Social Links */}
                         <ScrollReveal delay={0.2}>
@@ -167,86 +195,92 @@ export default async function AboutPage() {
             </section>
 
             {/* Education Section */}
-            <section className="py-24 md:py-32 mt-24 border-y border-white/10">
-                <div className="container mx-auto px-6">
-                    <ScrollReveal>
-                        <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-12">
-                            Education
-                        </h3>
-                    </ScrollReveal>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                        {profile.education.map((edu, index) => (
-                            <ScrollReveal key={edu.degree} delay={index * 0.1}>
-                                <div className="text-center">
-                                    <p className="text-xs tracking-[0.15em] text-amber-400 uppercase mb-2">
-                                        {edu.period}
-                                    </p>
-                                    <h4 className="text-lg font-light mb-1">
-                                        {edu.degree}
-                                    </h4>
-                                    <p className="text-white/50 text-sm">
-                                        {edu.institution}
-                                    </p>
-                                </div>
-                            </ScrollReveal>
-                        ))}
+            {profile.education && profile.education.length > 0 && (
+                <section className="py-24 md:py-32 mt-24 border-y border-white/10">
+                    <div className="container mx-auto px-6">
+                        <ScrollReveal>
+                            <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-12">
+                                Education
+                            </h3>
+                        </ScrollReveal>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                            {profile.education.map((edu, index) => (
+                                <ScrollReveal key={edu.degree} delay={index * 0.1}>
+                                    <div className="text-center">
+                                        <p className="text-xs tracking-[0.15em] text-amber-400 uppercase mb-2">
+                                            {edu.period}
+                                        </p>
+                                        <h4 className="text-lg font-light mb-1">
+                                            {edu.degree}
+                                        </h4>
+                                        <p className="text-white/50 text-sm">
+                                            {edu.institution}
+                                        </p>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
 
             {/* Skills Marquee */}
-            <section className="py-16 overflow-hidden">
-                <ScrollReveal>
-                    <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-8">
-                        Skills
-                    </h3>
-                </ScrollReveal>
-                <div className="relative">
-                    <div className="flex animate-marquee whitespace-nowrap">
-                        {profile.skills.map((skill, index) => (
-                            <span
-                                key={`a-${index}`}
-                                className="mx-8 text-2xl md:text-4xl font-light tracking-wider text-white/20"
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                        {profile.skills.map((skill, index) => (
-                            <span
-                                key={`b-${index}`}
-                                className="mx-8 text-2xl md:text-4xl font-light tracking-wider text-white/20"
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Hobbies Section */}
-            <section className="py-16">
-                <div className="container mx-auto px-6">
+            {profile.skills && profile.skills.length > 0 && (
+                <section className="py-16 overflow-hidden">
                     <ScrollReveal>
-                        <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-12">
-                            Beyond Work
+                        <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-8">
+                            Skills
                         </h3>
                     </ScrollReveal>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                        {profile.hobbies.map((hobby, index) => (
-                            <ScrollReveal key={hobby.name} delay={index * 0.1}>
-                                <div className="p-6 border border-white/10 bg-white/[0.02]">
-                                    <h4 className="text-lg font-light mb-2 text-amber-400">
-                                        {hobby.name}
-                                    </h4>
-                                    <p className="text-white/50 text-sm">
-                                        {hobby.description}
-                                    </p>
-                                </div>
-                            </ScrollReveal>
-                        ))}
+                    <div className="relative">
+                        <div className="flex animate-marquee whitespace-nowrap">
+                            {profile.skills.map((skill, index) => (
+                                <span
+                                    key={`a-${index}`}
+                                    className="mx-8 text-2xl md:text-4xl font-light tracking-wider text-white/20"
+                                >
+                                    {skill}
+                                </span>
+                            ))}
+                            {profile.skills.map((skill, index) => (
+                                <span
+                                    key={`b-${index}`}
+                                    className="mx-8 text-2xl md:text-4xl font-light tracking-wider text-white/20"
+                                >
+                                    {skill}
+                                </span>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
+
+            {/* Hobbies Section */}
+            {profile.hobbies && profile.hobbies.length > 0 && (
+                <section className="py-16">
+                    <div className="container mx-auto px-6">
+                        <ScrollReveal>
+                            <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-12">
+                                Beyond Work
+                            </h3>
+                        </ScrollReveal>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                            {profile.hobbies.map((hobby, index) => (
+                                <ScrollReveal key={hobby.name} delay={index * 0.1}>
+                                    <div className="p-6 border border-white/10 bg-white/[0.02]">
+                                        <h4 className="text-lg font-light mb-2 text-amber-400">
+                                            {hobby.name}
+                                        </h4>
+                                        <p className="text-white/50 text-sm">
+                                            {hobby.description}
+                                        </p>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* CTA Section */}
             <section className="py-24 md:py-32">

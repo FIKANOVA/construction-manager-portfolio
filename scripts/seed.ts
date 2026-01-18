@@ -1,5 +1,8 @@
 /**
- * Sanity Seed Script
+ * Sanity Seed Script - Bruce Odhiambo Construction Manager Portfolio
+ * 
+ * This script seeds the Sanity CMS with Bruce's profile data,
+ * services, projects (case studies), and experience.
  * 
  * Usage:
  * npx tsx scripts/seed.ts
@@ -29,7 +32,7 @@ const client = createClient({
     useCdn: false,
 })
 
-// Sample text helper
+// Sample text helper for rich text fields
 const sampleDesc = (text: string) => [
     {
         _type: 'block',
@@ -59,18 +62,65 @@ async function uploadImage(imageUrl: string) {
     }
 }
 
-// Seed Data
+// ============================================
+// BRUCE ODHIAMBO SEED DATA
+// ============================================
 const seedData = {
-    // 1. Photographer Profile (Singleton)
-    photographer: {
-        _type: 'photographer',
-        _id: 'photographer-main',
-        name: 'VUYO',
-        bio: `A visual storyteller based in Nairobi, Kenya, with a passion for capturing life's most precious moments. My journey with photography began as a curious teenager with a borrowed camera, and has evolved into a lifelong passion for creating images that transcend time.`,
-        philosophy: '"Photography is the art of frozen time... the ability to store emotion and feelings within a frame."',
-        gearList: ['Sony A7RV', 'Sony 24-70mm f/2.8 GM', 'Sony 85mm f/1.4 GM', 'Godox AD600 Pro'],
+    // 1. Profile (Singleton) - About Page Content
+    profile: {
+        _type: 'profile',
+        _id: 'profile-main',
+        name: 'Bruce Odhiambo',
+        title: 'Construction Manager | Digital Product Lead',
+        bio: `I am a purpose-driven project enthusiast combining my background in construction management with ongoing training in project planning and digital product development to drive sustainable, inclusive, and tech-enabled solutions.
+
+My focus is on contributing to ecologically responsible, socially inclusive, and ethically managed initiatives that align with the UN Sustainable Development Goals (SDGs). I'm especially interested in how digital and green technologies can influence sustainable infrastructure and help build resilient communities across Africa.
+
+I've taken on roles (both paid and voluntary) that sharpen my skills in planning, team coordination, data use, stakeholder communication, and tech adoption. These experiences are all steps toward my long-term goal: to become a strategic leader in sustainable development, shaping infrastructure projects that merge innovation with social impact.`,
+        interests: [
+            'Project-based roles in sustainability',
+            'Digital innovation for development',
+            'Infrastructure strategy',
+            'Community-centred design',
+        ],
+        skills: [
+            'Project Management',
+            'GIS & Spatial Analysis',
+            'Monitoring & Evaluation',
+            'Data Analytics',
+            'ArchiCAD',
+            'Microsoft Suite',
+            'Strategic Management',
+            'Lead Generation',
+        ],
+        education: [
+            {
+                _key: 'edu-1',
+                degree: 'MA Project Planning and Management',
+                institution: 'University of Nairobi',
+                period: '2023 - Present',
+            },
+            {
+                _key: 'edu-2',
+                degree: 'BSc Construction Management',
+                institution: 'University of Nairobi',
+                period: '2016 - 2020',
+            },
+        ],
+        hobbies: [
+            {
+                _key: 'hobby-1',
+                name: 'Rugby',
+                description: 'Active player for 10+ years, currently in the leadership group at Nondescripts RFC.',
+            },
+            {
+                _key: 'hobby-2',
+                name: 'Technology',
+                description: 'Enthusiast focusing on how technology can drive sustainability across ecosystems.',
+            },
+        ],
         socialLinks: [
-            { platform: 'instagram', url: 'https://www.instagram.com/vuyophoto' },
+            { _key: 'social-1', platform: 'linkedin', url: 'https://www.linkedin.com/in/bruce-odhiambo-8614b5175/' },
         ],
     },
 
@@ -78,187 +128,319 @@ const seedData = {
     contactSettings: {
         _type: 'contactSettings',
         _id: 'contact-settings',
-        email: 'hello@vuyophoto.com',
-        phone: '+254 700 000 000',
-        location: 'Nairobi, Kenya',
-        availabilityStatus: 'Booking for 2026',
+        email: 'cmbruce1015@gmail.com',
+        phone: '+254 741 058 917',
+        location: 'Munich, Germany / Nairobi, Kenya',
+        availabilityStatus: 'Open to Opportunities',
     },
 
-    // 3. Service Packages (Pricing Plans)
+    // 3. Service Packages - Construction Management Services
     servicePackages: [
-        // Weddings
+        // Construction Services
         {
             _type: 'servicePackage',
-            title: 'Gold Wedding Package',
-            category: 'wedding',
-            price: 'Ksh 85,000',
-            features: ['10 Hours Coverage', '2 Photographers', '500+ Edited Images', 'Online Gallery'],
-            isPopular: true,
-            description: 'Our most popular comprehensive wedding coverage.',
-        },
-        {
-            _type: 'servicePackage',
-            title: 'Platinum Wedding Package',
-            category: 'wedding',
-            price: 'Ksh 120,000',
-            features: ['Full Day Coverage', 'Engagement Shoot', 'Priority Editing', 'Premium Photo Album', ' Drone Coverage'],
-            isPopular: false,
-            description: 'The ultimate luxury experience for your special day.',
-        },
-
-        // Portraits
-        {
-            _type: 'servicePackage',
-            title: 'Individual Portrait Session',
-            category: 'portrait',
-            price: 'Ksh 15,000',
-            features: ['2 Hour Session', '3 Outfit Changes', '25 Retouched Images', 'Studio or Outdoor'],
-            isPopular: false,
-            description: 'Professional headshots or creative portraits.',
-        },
-        {
-            _type: 'servicePackage',
-            title: 'Family Portrait Session',
-            category: 'portrait',
-            price: 'Ksh 25,000',
-            features: ['2 Hour Session', 'Up to 5 Family Members', '40 Retouched Images', 'Print Release'],
-            isPopular: true,
-            description: 'Capture your family bond in a timeless style.',
-        },
-
-        // Commercial
-        {
-            _type: 'servicePackage',
-            title: 'Brand Starter',
-            category: 'commercial',
-            price: 'Ksh 45,000',
-            features: ['Half Day Shoot', 'Product & Lifestyle', 'Social Media Rights', '50 High-Res Images'],
-            isPopular: false,
-            description: 'Perfect for small businesses launching a new product.',
-        },
-        {
-            _type: 'servicePackage',
-            title: 'Full Brand Campaign',
-            category: 'commercial',
+            title: 'Project Management & Oversight',
+            category: 'construction',
             price: 'Custom Quote',
-            features: ['Multi-Day Shoot', 'Creative Direction', 'Full Commercial Rights', 'Model Casting Assistance'],
+            features: [
+                'Full Project Lifecycle Management',
+                'Resource & Budget Allocation',
+                'Risk Assessment & Mitigation',
+                'Quality Control & Compliance',
+                'Stakeholder Coordination',
+            ],
             isPopular: true,
-            description: 'Complete visual identity creation for established brands.',
+            description: 'End-to-end construction project management ensuring quality, safety, and timely delivery.',
         },
-
-        // Nature
         {
             _type: 'servicePackage',
-            title: 'Wildlife Excursion',
-            category: 'nature',
-            price: 'Ksh 30,000 / Day',
-            features: ['Guided Photography Tour', 'Equipment Rental Available', 'Post-Processing Workshop'],
+            title: 'Site Supervision',
+            category: 'construction',
+            price: 'Custom Quote',
+            features: [
+                'Daily Site Inspections',
+                'Progress Documentation',
+                'Contractor Coordination',
+                'Safety Compliance Monitoring',
+                'Issue Resolution',
+            ],
             isPopular: false,
-            description: 'Join us for a guided photography tour in the wild.',
+            description: 'Professional site supervision to ensure construction standards and safety protocols are maintained.',
         },
-
-        // Sports
         {
             _type: 'servicePackage',
-            title: 'Game Day Coverage',
-            category: 'sports',
-            price: 'Ksh 20,000',
-            features: ['Full Match Coverage', 'Action & Candid Shots', 'Fast Delivery for Socials'],
+            title: 'M&E Framework Development',
+            category: 'construction',
+            price: 'Custom Quote',
+            features: [
+                'KPI Development',
+                'Data Collection Strategy',
+                'Progress Tracking Systems',
+                'Impact Assessment',
+                'Reporting Dashboards',
+            ],
+            isPopular: false,
+            description: 'Robust Monitoring & Evaluation frameworks for construction and development projects.',
+        },
+
+        // GIS Services
+        {
+            _type: 'servicePackage',
+            title: 'Spatial Analysis & Mapping',
+            category: 'gis',
+            price: 'Custom Quote',
+            features: [
+                'Geographic Data Analysis',
+                'Custom Map Development',
+                'Site Selection Analysis',
+                'Environmental Impact Mapping',
+                'Infrastructure Planning',
+            ],
             isPopular: true,
-            description: 'Capture the intensity of the game.',
+            description: 'GIS expertise for spatial analysis, mapping, and data-driven infrastructure decisions.',
         },
-
-        // Celebrations
         {
             _type: 'servicePackage',
-            title: 'Event Coverage',
-            category: 'celebrations',
-            price: 'Ksh 10,000 / Hour',
-            features: ['Birthday Parties', 'Anniversaries', 'Baby Showers', 'Candid Moments'],
+            title: 'Urban Planning Support',
+            category: 'gis',
+            price: 'Custom Quote',
+            features: [
+                'Land Use Analysis',
+                'Zoning Compliance Review',
+                'Development Density Studies',
+                'Traffic Pattern Analysis',
+                'Green Space Planning',
+            ],
             isPopular: false,
-            description: 'Documenting your joy at any celebration.',
+            description: 'GIS-based support for urban planning and sustainable development initiatives.',
+        },
+
+        // AI & Data Quality Services
+        {
+            _type: 'servicePackage',
+            title: 'AI Training Data QA',
+            category: 'ai-data',
+            price: 'Custom Quote',
+            features: [
+                'Data Annotation & Labeling',
+                'Quality Assurance Protocols',
+                'Model Validation Testing',
+                'Training Dataset Curation',
+                'Edge Case Identification',
+            ],
+            isPopular: true,
+            description: 'Quality assurance and training data preparation for AI/ML systems ensuring accuracy and reliability.',
+        },
+        {
+            _type: 'servicePackage',
+            title: 'Data Quality Assessment',
+            category: 'ai-data',
+            price: 'Custom Quote',
+            features: [
+                'Data Accuracy Audits',
+                'Completeness Analysis',
+                'Consistency Checks',
+                'Bias Detection',
+                'Quality Improvement Plans',
+            ],
+            isPopular: false,
+            description: 'Comprehensive data quality assessments to ensure your datasets meet production standards.',
+        },
+
+        // Consultancy Services
+        {
+            _type: 'servicePackage',
+            title: 'Strategic Advisory',
+            category: 'consultancy',
+            price: 'Custom Quote',
+            features: [
+                'Project Feasibility Studies',
+                'Strategic Planning',
+                'Sustainability Consulting',
+                'Process Optimization',
+                'Technology Adoption Strategy',
+            ],
+            isPopular: true,
+            description: 'Strategic consulting for construction and development organizations seeking sustainable growth.',
+        },
+        {
+            _type: 'servicePackage',
+            title: 'Team Training & Capacity Building',
+            category: 'consultancy',
+            price: 'Custom Quote',
+            features: [
+                'Project Management Training',
+                'GIS Skills Workshops',
+                'Data Literacy Programs',
+                'Best Practices Workshops',
+                'Mentorship Programs',
+            ],
+            isPopular: false,
+            description: 'Training and capacity building for teams in construction, GIS, and project management.',
         },
     ],
 
-    // 4. Sample Projects
+    // 4. Projects (Case Studies) - Based on Bruce's CV
     projects: [
         {
-            title: 'Mountain Wedding',
-            slug: 'mountain-wedding',
-            category: 'wedding',
-            clientName: 'Sarah & Mike',
-            shootDate: '2025-11-10',
-            description: 'An intimate wedding ceremony held in the misty hills. We captured the raw emotion and stunning scenery.',
-            imageUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80',
+            title: 'KENSUP Kibera Housing Project',
+            slug: 'kensup-kibera-housing',
+            category: 'construction',
+            clientName: 'Ministry of Housing & Urban Development',
+            projectDate: '2024-01-01',
+            description: 'Supervised the construction of affordable housing units in Kibera as part of the Kenya Slum Upgrading Programme (KENSUP). Oversaw quality control, safety compliance, and coordination with multiple contractors.',
+            imageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2689&auto=format&fit=crop',
         },
         {
-            title: 'Urban Portraits',
-            slug: 'urban-portraits',
-            category: 'portrait',
-            clientName: 'James K.',
-            shootDate: '2025-10-05',
-            description: 'A gritty, high-contrast portrait session in downtown Nairobi, focusing on shadow and light.',
-            imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&q=80',
+            title: 'Nairobi River Restoration M&E',
+            slug: 'nairobi-river-restoration',
+            category: 'm-and-e',
+            clientName: 'Nairobi Metropolitan Services',
+            projectDate: '2023-06-01',
+            description: 'Developed and implemented a comprehensive Monitoring & Evaluation framework for the Nairobi River restoration project, tracking environmental impact indicators and community engagement metrics.',
+            imageUrl: 'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=2669&auto=format&fit=crop',
         },
         {
-            title: 'Tech Startup Launch',
-            slug: 'tech-startup-launch',
-            category: 'commercial',
-            clientName: 'NexGen Tech',
-            shootDate: '2025-08-15',
-            description: 'Product photography and lifestyle shots for a new tech gadget release.',
-            imageUrl: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&q=80',
+            title: 'Munich Urban GIS Mapping',
+            slug: 'munich-urban-gis-mapping',
+            category: 'gis',
+            clientName: 'Digitalstate GmbH',
+            projectDate: '2023-09-01',
+            description: 'Led GIS mapping and spatial analysis for urban development projects in Munich, Germany. Created detailed maps for infrastructure planning and environmental assessments.',
+            imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop',
         },
         {
-            title: 'Mara Migration',
-            slug: 'mara-migration',
-            category: 'nature',
-            clientName: 'Nature Weekly',
-            shootDate: '2025-07-20',
-            description: 'Witnessing the great wildebeest migration in the Masai Mara. A spectacle of nature.',
-            imageUrl: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200&q=80',
+            title: 'AI Mapping Data Quality Assurance',
+            slug: 'ai-mapping-data-qa',
+            category: 'ai-data',
+            clientName: 'Scale AI / Outlier',
+            projectDate: '2024-06-01',
+            description: 'Quality assurance for AI training datasets focused on autonomous vehicle navigation and mapping applications. Ensured data accuracy and identified edge cases for model improvement.',
+            imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2565&auto=format&fit=crop',
         },
         {
-            title: 'Rugby Finals',
-            slug: 'rugby-finals',
-            category: 'sports',
-            clientName: 'Nondies RFC',
-            shootDate: '2025-05-30',
-            description: 'High-intensity action shots from the cup final match. Mud, sweat, and victory.',
-            imageUrl: 'https://images.unsplash.com/photo-1628891890467-b79f2c8ba9dc?w=1200&q=80',
+            title: 'Affordable Housing Sustainability Study',
+            slug: 'affordable-housing-sustainability',
+            category: 'sustainability',
+            clientName: 'University of Nairobi',
+            projectDate: '2022-05-01',
+            description: 'Research project analyzing sustainable construction practices for affordable housing in Kenya, focusing on eco-friendly materials and energy efficiency.',
+            imageUrl: 'https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=2565&auto=format&fit=crop',
         },
         {
-            title: 'Golden Jubilee',
-            slug: 'golden-jubilee',
-            category: 'celebrations',
-            clientName: 'The Kamathis',
-            shootDate: '2025-12-01',
-            description: 'A vibrant 50th anniversary celebration full of color, dance, and family joy.',
-            imageUrl: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1200&q=80',
+            title: 'Community Infrastructure Assessment',
+            slug: 'community-infrastructure-assessment',
+            category: 'construction',
+            clientName: 'Local Government Authority',
+            projectDate: '2021-08-01',
+            description: 'Comprehensive infrastructure assessment for rural community development, including roads, water systems, and public facilities. Developed priority action plans and cost estimates.',
+            imageUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop',
+        },
+    ],
+
+    // 5. Experience (Work History)
+    experience: [
+        {
+            _type: 'experience',
+            company: 'Digitalstate GmbH',
+            role: 'GIS Product Data Specialist',
+            location: 'Munich, Germany',
+            period: 'Sep 2023 - Present',
+            description: 'Contributing to GIS product development and spatial data management for urban planning and infrastructure projects across Germany.',
+            website: 'https://digitalstate.de',
+            highlights: [
+                'GIS data analysis and mapping',
+                'Product development support',
+                'Quality assurance for spatial datasets',
+            ],
+            order: 1,
+        },
+        {
+            _type: 'experience',
+            company: 'Scale AI / Outlier',
+            role: 'AI Training & Quality Analyst',
+            location: 'Remote',
+            period: 'Jan 2024 - Present',
+            description: 'Quality assurance for AI training datasets, ensuring data accuracy and identifying edge cases for machine learning model improvement.',
+            website: 'https://scale.com',
+            highlights: [
+                'Data annotation and labeling QA',
+                'Edge case identification',
+                'Model validation support',
+            ],
+            order: 2,
+        },
+        {
+            _type: 'experience',
+            company: 'Ministry of Housing & Urban Development',
+            role: 'Construction Site Supervisor',
+            location: 'Nairobi, Kenya',
+            period: '2020 - 2023',
+            description: 'Supervised construction of affordable housing projects under KENSUP, ensuring quality control, safety compliance, and contractor coordination.',
+            highlights: [
+                'Project oversight and coordination',
+                'Quality and safety compliance',
+                'Stakeholder management',
+            ],
+            order: 3,
+        },
+        {
+            _type: 'experience',
+            company: 'University of Nairobi',
+            role: 'Research Assistant',
+            location: 'Nairobi, Kenya',
+            period: '2019 - 2020',
+            description: 'Conducted research on sustainable construction practices and affordable housing in Kenya.',
+            highlights: [
+                'Data collection and analysis',
+                'Literature review',
+                'Report writing',
+            ],
+            order: 4,
         },
     ],
 }
 
 async function seed() {
-    console.log('🌱 Starting expanded seed process...')
+    console.log('🌱 Starting Bruce Odhiambo Portfolio seed process...')
+    console.log('================================================\n')
 
     try {
-        console.log('📷 Creating/Updating photographer...')
-        await client.createOrReplace(seedData.photographer)
+        // 1. Profile
+        console.log('👤 Creating/Updating profile...')
+        await client.createOrReplace(seedData.profile)
+        console.log('   ✓ Profile created\n')
 
+        // 2. Contact Settings
         console.log('📞 Creating/Updating contact settings...')
         await client.createOrReplace(seedData.contactSettings)
+        console.log('   ✓ Contact settings created\n')
 
-        console.log('🗑️ Clearing existing data...')
+        // 3. Clear existing dynamic data
+        console.log('🗑️  Clearing existing data...')
         await client.delete({ query: '*[_type == "servicePackage"]' })
         await client.delete({ query: '*[_type == "project"]' })
+        await client.delete({ query: '*[_type == "experience"]' })
+        console.log('   ✓ Cleared service packages, projects, and experience\n')
 
-        console.log('📦 Creating service packages (Pricing Plans)...')
+        // 4. Service Packages
+        console.log('📦 Creating service packages...')
         for (const pkg of seedData.servicePackages) {
             await client.create(pkg)
+            console.log(`   ✓ ${pkg.title}`)
         }
+        console.log('')
 
-        console.log('🎨 Creating sample projects with Real Images...')
+        // 5. Experience
+        console.log('💼 Creating experience entries...')
+        for (const exp of seedData.experience) {
+            await client.create(exp)
+            console.log(`   ✓ ${exp.company} - ${exp.role}`)
+        }
+        console.log('')
+
+        // 6. Projects (Case Studies)
+        console.log('🏗️  Creating projects (case studies) with images...')
         for (const p of seedData.projects) {
             console.log(`   > Uploading image for ${p.title}...`)
             const imageAsset = await uploadImage(p.imageUrl)
@@ -269,19 +451,31 @@ async function seed() {
                 slug: { _type: 'slug', current: p.slug },
                 category: p.category,
                 clientName: p.clientName,
-                shootDate: p.shootDate,
+                projectDate: p.projectDate,
                 description: sampleDesc(p.description),
                 coverImage: imageAsset,
-                gallery: imageAsset ? [imageAsset] : [], // Use same image for gallery for now
+                gallery: imageAsset ? [imageAsset] : [],
             }
 
             await client.create(projectDoc)
+            console.log(`   ✓ ${p.title}`)
         }
 
-        console.log('✅ Seed completed! Database is well populated.')
-        console.log('   👉 Categories covered: Wedding, Portrait, Commercial, Nature, Sports, Celebrations')
+        console.log('\n================================================')
+        console.log('✅ Seed completed successfully!')
+        console.log('================================================')
+        console.log('\n📊 Summary:')
+        console.log(`   • Profile: 1`)
+        console.log(`   • Contact Settings: 1`)
+        console.log(`   • Service Packages: ${seedData.servicePackages.length}`)
+        console.log(`   • Projects: ${seedData.projects.length}`)
+        console.log(`   • Experience: ${seedData.experience.length}`)
+        console.log('\n🔗 Categories covered:')
+        console.log('   Construction, GIS, AI & Data, Consultancy, M&E, Sustainability')
+        console.log('\n👉 Visit /studio to manage content in Sanity Studio')
+
     } catch (error) {
-        console.error('❌ Seed failed:', error)
+        console.error('\n❌ Seed failed:', error)
         process.exit(1)
     }
 }

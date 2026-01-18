@@ -6,14 +6,14 @@ import Link from 'next/link'
 
 export default function Hero() {
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-zinc-900">
+        <section className="relative h-screen w-full overflow-hidden bg-[#0d2137]">
             {/* Layer 1: Construction Background */}
             <div className="absolute inset-0 z-0">
                 <Image
                     src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
                     alt="Construction Site Background"
                     fill
-                    className="object-cover opacity-40 grayscale"
+                    className="object-cover opacity-30 grayscale"
                 />
             </div>
 
@@ -30,8 +30,8 @@ export default function Hero() {
                 </div>
             </div>
 
-            {/* Layer 3: Gradient Overlay for Text Readability */}
-            <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/50 to-black/80" />
+            {/* Layer 3: Gradient Overlay for Text Readability - Updated for blue theme */}
+            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0d2137] via-[#0d2137]/60 to-[#0d2137]/80" />
 
             {/* Layer 4: Content */}
             <div className="relative z-20 h-full flex flex-col items-center justify-center px-6 pt-20">
