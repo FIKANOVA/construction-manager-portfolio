@@ -74,7 +74,7 @@ export const siteConfig: SiteConfig = {
         email: 'cmbruce1015@gmail.com',
         phone: '(+254) 0741058917',
         phoneWork: '(+49) 015236122715',
-        location: 'Nairobi, Kenya',
+        location: 'Munich, Germany / Nairobi, Kenya',
         availabilityStatus: 'Open to Opportunities',
     },
 

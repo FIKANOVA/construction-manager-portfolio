@@ -39,7 +39,7 @@ export default function ContactPage() {
     }
 
     return (
-        <div className="pt-24 pb-16 bg-black min-h-screen">
+        <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
                     {/* Left Column - Info */}
@@ -72,7 +72,7 @@ export default function ContactPage() {
                                 {/* Phone */}
                                 <div>
                                     <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
-                                        Phone
+                                        Phone (Kenya)
                                     </p>
                                     <a
                                         href={`tel:${contactSettings.phone}`}
@@ -81,6 +81,21 @@ export default function ContactPage() {
                                         {contactSettings.phone}
                                     </a>
                                 </div>
+
+                                {/* Work Phone */}
+                                {contactSettings.phoneWork && (
+                                    <div>
+                                        <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
+                                            Phone (Germany)
+                                        </p>
+                                        <a
+                                            href={`tel:${contactSettings.phoneWork}`}
+                                            className="text-lg hover:text-white/70 transition-colors"
+                                        >
+                                            {contactSettings.phoneWork}
+                                        </a>
+                                    </div>
+                                )}
 
                                 {/* Location */}
                                 <div>
@@ -185,19 +200,19 @@ export default function ContactPage() {
                                     {/* Service Type */}
                                     <div>
                                         <select
-                                            className="form-input w-full bg-black cursor-pointer [&>option]:bg-black [&>option]:text-white"
+                                            className="form-input w-full bg-[#0d2137] cursor-pointer [&>option]:bg-[#0d2137] [&>option]:text-white"
                                             {...register('serviceType', { required: 'Please select a service' })}
                                             defaultValue=""
                                         >
-                                            <option value="" disabled className="bg-black text-white">
+                                            <option value="" disabled className="bg-[#0d2137] text-white">
                                                 Select Service Type
                                             </option>
-                                            <option value="project-management" className="bg-black text-white">Project Management & M&E</option>
-                                            <option value="gis" className="bg-black text-white">GIS & Spatial Intelligence</option>
-                                            <option value="ai-qa" className="bg-black text-white">AI Training Data & QA</option>
-                                            <option value="green-tech" className="bg-black text-white">Green Tech Integration</option>
-                                            <option value="infrastructure" className="bg-black text-white">Sustainable Infrastructure</option>
-                                            <option value="other" className="bg-black text-white">Other</option>
+                                            <option value="project-management" className="bg-[#0d2137] text-white">Project Management & M&E</option>
+                                            <option value="gis" className="bg-[#0d2137] text-white">GIS & Spatial Intelligence</option>
+                                            <option value="ai-qa" className="bg-[#0d2137] text-white">AI Training Data & QA</option>
+                                            <option value="green-tech" className="bg-[#0d2137] text-white">Green Tech Integration</option>
+                                            <option value="infrastructure" className="bg-[#0d2137] text-white">Sustainable Infrastructure</option>
+                                            <option value="other" className="bg-[#0d2137] text-white">Other</option>
                                         </select>
                                         {errors.serviceType && (
                                             <p className="mt-2 text-xs text-red-400">{errors.serviceType.message}</p>

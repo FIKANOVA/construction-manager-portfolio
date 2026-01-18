@@ -29,7 +29,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
     if (!project) {
         return (
-            <div className="pt-24 pb-16 bg-black min-h-screen">
+            <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
                 <div className="container mx-auto px-6 text-center py-24">
                     <h1 className="text-4xl font-light mb-4">Project Not Found</h1>
                     <p className="text-white/60 mb-8">The project you're looking for doesn't exist.</p>

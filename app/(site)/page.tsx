@@ -31,7 +31,7 @@ export default async function HomePage() {
       <Hero />
 
       {/* Featured Experience Section */}
-      <section className="py-24 md:py-32 bg-black border-t border-white/10">
+      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10">
         <div className="container mx-auto px-6">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-light tracking-[0.15em] uppercase mb-12 text-center">
@@ -71,7 +71,7 @@ export default async function HomePage() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 md:py-32 bg-black border-t border-white/10">
+      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10">
         <div className="container mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-light tracking-[0.15em] uppercase mb-12">
@@ -101,7 +101,7 @@ export default async function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-black border-t border-white/10">
+      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10">
         <div className="container mx-auto px-6 text-center">
           <ScrollReveal>
             <h2 className="text-3xl md:text-5xl font-light tracking-[0.1em] mb-8">

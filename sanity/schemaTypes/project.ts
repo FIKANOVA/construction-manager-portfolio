@@ -49,10 +49,11 @@ export const project = defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Construction & Management', value: 'construction' },
+          { title: 'Construction & Infrastructure', value: 'construction' },
           { title: 'GIS & Spatial Analysis', value: 'gis' },
           { title: 'AI & Data Quality', value: 'ai-data' },
           { title: 'Monitoring & Evaluation', value: 'm-and-e' },
+          { title: 'Sustainability Projects', value: 'sustainability' },
           { title: 'Other', value: 'other' },
         ],
       },
@@ -60,7 +61,7 @@ export const project = defineType({
     }),
     defineField({
       name: 'clientName',
-      title: 'Client Name',
+      title: 'Client / Organization',
       type: 'string',
     }),
     defineField({
@@ -70,9 +71,10 @@ export const project = defineType({
       description: 'Link to the live project or external case study',
     }),
     defineField({
-      name: 'shootDate',
-      title: 'Shoot Date',
+      name: 'projectDate',
+      title: 'Project Date',
       type: 'date',
+      description: 'When the project was completed or started',
     }),
     defineField({
       name: 'description',

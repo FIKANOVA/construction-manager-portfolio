@@ -34,7 +34,7 @@ export default function Navbar() {
         <>
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? 'bg-black/80 backdrop-blur-md border-b border-white/10'
+                    ? 'bg-[#0d2137]/80 backdrop-blur-md border-b border-white/10'
                     : 'bg-transparent'
                     }`}
             >
@@ -98,7 +98,7 @@ export default function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-40 bg-black flex items-center justify-center md:hidden"
+                        className="fixed inset-0 z-40 bg-[#0d2137] flex items-center justify-center md:hidden"
                     >
                         <nav className="flex flex-col items-center gap-8">
                             {siteConfig.nav.links.map((link, index) => (

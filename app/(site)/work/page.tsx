@@ -4,10 +4,25 @@ import type { Experience } from '@/lib/sanity'
 
 export const revalidate = 60
 
-// Bruce Odhiambo's Full Work Experience (Fallback)
+// Bruce Odhiambo's Complete Work Experience (Fallback when Sanity is empty)
 const fallbackExperience = [
     {
         _id: '1',
+        company: 'J365',
+        role: 'Project Lead',
+        location: 'Nairobi, Kenya',
+        period: 'Oct 2024 - Present',
+        description: 'Leading a mentorship-driven social initiative to empower student and early-career athletes (particularly rugby players) in building sustainable life paths beyond the pitch.',
+        highlights: [
+            'Lead overall project strategy, including goal-setting, logistics, and implementation',
+            'Coordinate mentor–mentee engagement, matching athletes with professionals across industries',
+            'Cultivate partnerships with experienced rugby veterans and professionals',
+            'Manage program timelines, monitor progress, and evaluate outcomes',
+            'Foster a growth-oriented, inclusive culture for participants',
+        ],
+    },
+    {
+        _id: '2',
         company: 'Dustlight',
         role: 'Marketing & Sales Trainee',
         location: 'Munich, Germany',
@@ -20,7 +35,78 @@ const fallbackExperience = [
             'Preparation of presentations',
         ],
     },
-    // ... (Other entries can be added to Sanity, keeping one as fallback example)
+    {
+        _id: '3',
+        company: 'Sustain East Africa',
+        role: 'GIS & Project Management Assistant',
+        location: 'Nairobi, Kenya',
+        period: 'Dec 2024 - May 2025',
+        description: 'Supported project planning and execution by integrating geospatial analysis with project management tools and practices.',
+        highlights: [
+            'Cleaned and validated spatial data using QGIS',
+            'Developed tools to monitor project deliverables and automate email reminders',
+            'Designed and refined work plan templates to enhance tracking efficiency',
+            'Provided regular progress reports and flagged data discrepancies',
+            'Collaborated with team leads to maintain consistency and meet milestones',
+        ],
+    },
+    {
+        _id: '4',
+        company: 'ETCO Kenya',
+        role: 'Monitoring and Evaluation Officer (Volunteer)',
+        location: 'Nairobi, Kenya',
+        period: 'Jan 2024 - Aug 2025',
+        description: 'Supporting organisational growth and accountability by implementing robust M&E systems to assess the performance and impact of development initiatives.',
+        website: 'https://www.etco-kenya.org/',
+        highlights: [
+            'Design and deploy M&E tools to assess program outcomes',
+            'Collect and analyse field data to generate actionable insights',
+            'Support adaptive management with evidence-based recommendations',
+            'Facilitate cross-functional collaboration between teams',
+        ],
+    },
+    {
+        _id: '5',
+        company: 'LIMA Labs',
+        role: 'Data Quality Specialist',
+        location: 'Nairobi, Kenya',
+        period: 'Jun 2023 - Nov 2023',
+        description: 'Contributed to the development of high-quality machine learning datasets by accurately labelling and categorising data according to detailed project guidelines.',
+        highlights: [
+            'Applied project-specific annotation protocols to label images and data',
+            'Conducted regular quality checks and participated in feedback cycles',
+            'Collaborated with team to clarify ambiguous cases and update labels',
+            'Supported creation of unbiased, high-performing AI models',
+        ],
+    },
+    {
+        _id: '6',
+        company: 'Jubilee Allianz',
+        role: 'Data Entry Clerk',
+        location: 'Nairobi, Kenya',
+        period: 'Dec 2021 - Jan 2022',
+        description: 'Accurately entered and updated essential data into company databases and systems, ensuring all records were precise and up-to-date.',
+        highlights: [
+            'Reviewed documents, verified information, and corrected discrepancies',
+            'Handled sensitive information with confidentiality and accuracy',
+            'Collaborated with team to streamline data processes',
+            'Supported efficient data management for operational effectiveness',
+        ],
+    },
+    {
+        _id: '7',
+        company: 'Remotasks',
+        role: '3D-LiDAR Specialist',
+        location: 'Nairobi, Kenya',
+        period: 'Nov 2019 - Nov 2021',
+        description: 'Labelled and annotated LiDAR data to assist in training AI models for spatial recognition and object detection in autonomous systems.',
+        highlights: [
+            'Worked with complex 3D point cloud data',
+            'Identified and categorised vehicles, pedestrians, and infrastructure',
+            'Ensured all annotations met quality standards',
+            'Contributed to datasets for autonomous driving applications',
+        ],
+    },
 ]
 
 export default async function WorkPage() {
@@ -28,7 +114,7 @@ export default async function WorkPage() {
     const displayExperience = sanityExperience.length > 0 ? sanityExperience : fallbackExperience
 
     return (
-        <div className="pt-24 pb-16 bg-black min-h-screen">
+        <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
             <div className="container mx-auto px-6">
                 {/* Header */}
                 <ScrollReveal>
@@ -95,6 +181,39 @@ export default async function WorkPage() {
                         </ScrollReveal>
                     ))}
                 </div>
+
+                {/* Education Section */}
+                <ScrollReveal delay={0.3}>
+                    <div className="mt-24 pt-16 border-t border-white/10">
+                        <h2 className="text-3xl font-light tracking-[0.15em] uppercase mb-12 text-center">
+                            Education
+                        </h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+                            <div className="text-center p-6 border border-white/10 bg-white/[0.02]">
+                                <p className="text-xs tracking-[0.15em] text-amber-400 uppercase mb-2">
+                                    2023 - Present
+                                </p>
+                                <h3 className="text-lg font-light mb-1">
+                                    MA Project Planning and Management
+                                </h3>
+                                <p className="text-white/50 text-sm">
+                                    University of Nairobi
+                                </p>
+                            </div>
+                            <div className="text-center p-6 border border-white/10 bg-white/[0.02]">
+                                <p className="text-xs tracking-[0.15em] text-amber-400 uppercase mb-2">
+                                    2016 - 2020
+                                </p>
+                                <h3 className="text-lg font-light mb-1">
+                                    BSc Construction Management
+                                </h3>
+                                <p className="text-white/50 text-sm">
+                                    University of Nairobi
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </ScrollReveal>
             </div>
         </div>
     )

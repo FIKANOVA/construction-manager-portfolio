@@ -19,7 +19,7 @@ interface FeaturedWorkProps {
 
 export default function FeaturedWork({ projects }: FeaturedWorkProps) {
     return (
-        <section className="py-24 md:py-32 bg-black">
+        <section className="py-24 md:py-32 bg-[#0d2137]">
             <div className="container mx-auto px-6">
                 <ScrollReveal>
                     <div className="flex items-center justify-between mb-16">

@@ -22,7 +22,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
     }
 
     return (
-        <div className="pt-24 pb-16 bg-black min-h-screen">
+        <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
             <div className="container mx-auto px-6">
                 {/* Back Link */}
                 <ScrollReveal>

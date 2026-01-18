@@ -3,7 +3,7 @@ import { siteConfig } from '@/site-config'
 
 export default function Footer() {
     return (
-        <footer className="bg-black border-t border-white/10">
+        <footer className="bg-[#0d2137] border-t border-white/10">
             <div className="container mx-auto px-6 py-12">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                     {/* Logo */}

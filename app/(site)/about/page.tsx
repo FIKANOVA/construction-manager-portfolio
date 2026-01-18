@@ -56,7 +56,7 @@ I've taken on roles (both paid and voluntary) that sharpen my skills in planning
 
 export default async function AboutPage() {
     return (
-        <div className="pt-24 pb-16 bg-black min-h-screen">
+        <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
             {/* Split Layout Section */}
             <section className="container mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
