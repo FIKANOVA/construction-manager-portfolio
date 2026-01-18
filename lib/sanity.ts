@@ -1,0 +1,117 @@
+import { createClient } from 'next-sanity'
+import imageUrlBuilder from '@sanity/image-url'
+import type { SanityImageSource } from '@sanity/image-url'
+
+// Configuration
+// Add SANITY_API_TOKEN to your .env.local file
+// Project ID: cpjzxobo
+
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'cpjzxobo'
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+export const apiVersion = '2024-01-01'
+
+export const client = createClient({
+  projectId,
+  dataset,
+  apiVersion,
+  useCdn: false, // process.env.NODE_ENV === 'production', // Force fresh data for now
+  token: process.env.SANITY_API_TOKEN,
+})
+
+// Image URL builder
+const builder = imageUrlBuilder(client)
+
+export function urlFor(source: SanityImageSource) {
+  return builder.image(source)
+}
+
+// Helper types
+export interface Project {
+  _id: string
+  title: string
+  slug: { current: string }
+  coverImage: SanityImageSource
+  gallery?: SanityImageSource[]
+  category: string
+  clientName?: string
+  shootDate?: string
+  description?: any[]
+  projectLink?: string
+}
+
+export interface Experience {
+  _id: string
+  company: string
+  role: string
+  location?: string
+  period?: string
+  description?: string
+  website?: string
+  highlights?: string[]
+}
+
+export interface ServicePackage {
+  _id: string
+  title: string
+  category: string
+  price: string
+  features?: string[]
+  isPopular?: boolean
+  description?: string
+}
+
+export interface Photographer {
+  _id: string
+  name: string
+  bio?: string
+  portraitImage?: SanityImageSource
+  philosophy?: string
+  gearList?: string[]
+  socialLinks?: { platform: string; url: string }[]
+  cvFile?: {
+    asset: {
+      _ref: string
+      url: string
+    }
+  }
+}
+
+export interface ContactSettings {
+  _id: string
+  email?: string
+  phone?: string
+  location?: string
+  availabilityStatus?: string
+}
+
+// GROQ Queries
+export const queries = {
+  allProjects: `*[_type == "project"] | order(shootDate desc) {
+    _id, title, slug, coverImage, category, clientName, shootDate, projectLink, description
+  }`,
+
+  featuredProjects: `*[_type == "project"] | order(shootDate desc)[0...4] {
+    _id, title, slug, coverImage, category, projectLink
+  }`,
+
+  projectBySlug: `*[_type == "project" && slug.current == $slug][0] {
+    _id, title, slug, coverImage, gallery, category, clientName, shootDate, description, projectLink
+  }`,
+
+  allExperience: `*[_type == "experience"] | order(order asc) {
+    _id, company, role, location, period, description, website, highlights
+  }`,
+
+  allServicePackages: `*[_type == "servicePackage"] | order(category) {
+    _id, title, category, price, features, isPopular, description
+  }`,
+
+  photographer: `*[_type == "photographer"][0] {
+    _id, name, bio, portraitImage, philosophy, gearList, socialLinks,
+    "cvFile": cvFile.asset->url
+  }`,
+
+  contactSettings: `*[_type == "contactSettings"][0] {
+    _id, email, phone, location, availabilityStatus
+  }`,
+}

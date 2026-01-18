@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #f5f5f5;
+  --accent: #d4af37;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-manrope);
+}
+
+/* Dark mode only - cinematic aesthetic */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Typography utilities */
+.text-gradient {
+  background: linear-gradient(135deg, #fff 0%, #888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation utilities */
+@keyframes slow-zoom {
+  from {
+    transform: scale(1.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-out forwards;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Image hover effects for portfolio */
+.portfolio-item {
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portfolio-grid:hover .portfolio-item:not(:hover) {
+  opacity: 0.4;
+  filter: grayscale(0.5);
+}
+
+.portfolio-item:hover {
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+/* Masonry layout */
+.masonry {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry {
+    column-count: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* Form styling */
+.form-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 0;
+  color: #fff;
+  transition: border-color 0.3s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.6);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
