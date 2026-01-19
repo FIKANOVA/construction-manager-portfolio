@@ -82,6 +82,32 @@ export const project = defineType({
       type: 'array',
       of: [{ type: 'block' }],
     }),
+    defineField({
+      name: 'challenge',
+      title: 'The Challenge',
+      type: 'text',
+      description: 'Describe the main challenge of this project',
+    }),
+    defineField({
+      name: 'solution',
+      title: 'The Solution',
+      type: 'text',
+      description: 'Describe the solution implemented',
+    }),
+    defineField({
+      name: 'impact',
+      title: 'Key Impact',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'List the key impacts or outcomes',
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'Add short tags like Strategy, Mapping, etc.',
+    }),
   ],
   preview: {
     select: {

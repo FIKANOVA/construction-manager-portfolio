@@ -37,6 +37,10 @@ export interface Project {
   shootDate?: string
   description?: any[]
   projectLink?: string
+  challenge?: string
+  solution?: string
+  impact?: string[]
+  tags?: string[]
 }
 
 export interface Experience {
@@ -102,7 +106,8 @@ export interface Profile {
 // GROQ Queries
 export const queries = {
   allProjects: `*[_type == "project"] | order(shootDate desc) {
-    _id, title, slug, coverImage, category, clientName, shootDate, projectLink, description
+    _id, title, slug, coverImage, category, clientName, shootDate, projectLink, description,
+    challenge, solution, impact, tags
   }`,
 
   featuredProjects: `*[_type == "project"] | order(shootDate desc)[0...4] {
