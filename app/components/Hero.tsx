@@ -36,8 +36,8 @@ export default function Hero() {
             </div>
 
             {/* Layer 2: Bruce's Profile Image - Sharp & High Contrast */}
-            <div className="absolute inset-x-0 bottom-0 top-16 z-10 flex justify-center items-end">
-                <div className="relative w-full h-[90%] max-w-5xl">
+            <div className="absolute inset-x-0 bottom-0 top-16 z-0 flex justify-center items-end">
+                <div className="relative w-full h-[95%] max-w-5xl">
                     <motion.div
                         initial={{ opacity: 0, y: 40 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ export default function Hero() {
                             alt="Bruce Odhiambo"
                             fill
                             priority
-                            className="object-contain object-bottom opacity-100 grayscale-[0.5] contrast-125 brightness-110 [mask-image:linear-gradient(to_top,black_50%,transparent_95%)]"
+                            className="object-contain object-bottom opacity-100 grayscale-[0.2] contrast-125 brightness-105 [mask-image:linear-gradient(to_top,black_60%,transparent_98%)]"
                         />
                     </motion.div>
                 </div>
@@ -63,8 +63,8 @@ export default function Hero() {
                     transition={{ duration: 1, delay: 0.5 }}
                     className="max-w-4xl w-full p-12 md:p-20 relative"
                 >
-                    {/* Glass Backdrop Effect for content area */}
-                    <div className="absolute inset-0 z-0 bg-white/10 backdrop-blur-[4px] border border-white/40 shadow-[0_8px_32px_rgba(13,33,55,0.05)] rounded-3xl" />
+                    {/* Glass Backdrop Effect - Reduced opacity and blur for clarity */}
+                    <div className="absolute inset-0 z-0 bg-white/5 backdrop-blur-[2px] border border-white/20 shadow-[0_8px_32px_rgba(13,33,55,0.03)] rounded-3xl" />
 
                     <div className="relative z-10 text-center">
                         {/* Tagline */}
@@ -72,7 +72,7 @@ export default function Hero() {
                             initial={{ letterSpacing: '0.2em', opacity: 0 }}
                             animate={{ letterSpacing: '0.6em', opacity: 1 }}
                             transition={{ duration: 1.5, delay: 0.8 }}
-                            className="block text-[10px] md:text-sm font-light text-[#0d2137]/40 uppercase mb-8"
+                            className="block text-[10px] md:text-sm font-light text-[#0d2137]/60 uppercase mb-8"
                         >
                             Integrity • Precision • Future
                         </motion.span>
@@ -95,7 +95,7 @@ export default function Hero() {
                             className="flex flex-col items-center gap-6"
                         >
                             <div className="w-12 h-[1px] bg-[#0d2137]/20" />
-                            <p className="text-sm md:text-xl tracking-[0.3em] text-[#0d2137]/70 uppercase font-light">
+                            <p className="text-sm md:text-xl tracking-[0.3em] text-[#0d2137]/80 uppercase font-light">
                                 Construction Manager & Digital Lead
                             </p>
                         </motion.div>
@@ -108,17 +108,17 @@ export default function Hero() {
                             className="mt-16 flex flex-col sm:flex-row gap-8 justify-center"
                         >
                             <Link
-                                href="/BO_CV.pdf"
-                                target="_blank"
+                                href="/contact"
                                 className="px-12 py-4 bg-[#0d2137] text-white text-xs tracking-[0.3em] uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_20px_40px_rgba(13,33,55,0.2)]"
                             >
-                                Portfolio
+                                Contact Me
                             </Link>
                             <Link
-                                href="/contact"
+                                href="/BO_CV.pdf"
+                                target="_blank"
                                 className="px-12 py-4 border border-[#0d2137]/30 text-[#0d2137] text-xs tracking-[0.3em] uppercase transition-all duration-300 hover:bg-[#0d2137] hover:text-white"
                             >
-                                Contact
+                                View CV
                             </Link>
                         </motion.div>
                     </div>
