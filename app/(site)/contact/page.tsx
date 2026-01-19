@@ -1,13 +1,18 @@
 'use client'
 
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import ScrollReveal from '@/app/components/ScrollReveal'
-
+import { client, queries } from '@/lib/sanity'
 import { siteConfig } from '@/site-config'
 
-const contactSettings = siteConfig.contact
+interface ContactSettings {
+    email: string
+    phone: string
+    location: string
+    availabilityStatus: string
+}
 
 interface FormData {
     name: string
@@ -20,6 +25,26 @@ interface FormData {
 export default function ContactPage() {
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [settings, setSettings] = useState<ContactSettings>(siteConfig.contact)
+
+    useEffect(() => {
+        async function fetchSettings() {
+            try {
+                const data = await client.fetch(queries.contactSettings)
+                if (data) {
+                    setSettings({
+                        email: data.email || siteConfig.contact.email,
+                        phone: data.phone || siteConfig.contact.phone,
+                        location: data.location || siteConfig.contact.location,
+                        availabilityStatus: data.availabilityStatus || siteConfig.contact.availabilityStatus
+                    })
+                }
+            } catch (error) {
+                console.error('Failed to fetch contact settings:', error)
+            }
+        }
+        fetchSettings()
+    }, [])
 
     const {
         register,
@@ -32,7 +57,6 @@ export default function ContactPage() {
         setIsSubmitting(true)
         // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 1500))
-        // console.log('Form submitted:', data)
         setIsSubmitting(false)
         setIsSubmitted(true)
         reset()
@@ -45,11 +69,11 @@ export default function ContactPage() {
                     {/* Left Column - Info */}
                     <div>
                         <ScrollReveal>
-                            <h1 className="text-4xl md:text-6xl font-light tracking-[0.2em] uppercase mb-4">
+                            <h1 className="text-4xl md:text-6xl font-light tracking-[0.2em] uppercase mb-4 text-white">
                                 Get in Touch
                             </h1>
                             <p className="text-white/60 mb-12 max-w-md">
-                                Ready to create something beautiful together?
+                                Ready to collaborate on your next project?
                                 Fill out the form and I&apos;ll get back to you within 24 hours.
                             </p>
                         </ScrollReveal>
@@ -62,47 +86,32 @@ export default function ContactPage() {
                                         Email
                                     </p>
                                     <a
-                                        href={`mailto:${contactSettings.email}`}
-                                        className="text-lg hover:text-white/70 transition-colors"
+                                        href={`mailto:${settings.email}`}
+                                        className="text-lg text-white hover:text-amber-400 transition-colors"
                                     >
-                                        {contactSettings.email}
+                                        {settings.email}
                                     </a>
                                 </div>
 
                                 {/* Phone */}
                                 <div>
                                     <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
-                                        Phone (Kenya)
+                                        Phone
                                     </p>
                                     <a
-                                        href={`tel:${contactSettings.phone}`}
-                                        className="text-lg hover:text-white/70 transition-colors"
+                                        href={`tel:${settings.phone}`}
+                                        className="text-lg text-white hover:text-amber-400 transition-colors"
                                     >
-                                        {contactSettings.phone}
+                                        {settings.phone}
                                     </a>
                                 </div>
-
-                                {/* Work Phone */}
-                                {contactSettings.phoneWork && (
-                                    <div>
-                                        <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
-                                            Phone (Germany)
-                                        </p>
-                                        <a
-                                            href={`tel:${contactSettings.phoneWork}`}
-                                            className="text-lg hover:text-white/70 transition-colors"
-                                        >
-                                            {contactSettings.phoneWork}
-                                        </a>
-                                    </div>
-                                )}
 
                                 {/* Location */}
                                 <div>
                                     <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
                                         Location
                                     </p>
-                                    <p className="text-lg">{contactSettings.location}</p>
+                                    <p className="text-lg text-white">{settings.location}</p>
                                 </div>
 
                                 {/* Availability */}
@@ -110,8 +119,8 @@ export default function ContactPage() {
                                     <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
                                         Availability
                                     </p>
-                                    <p className="text-lg text-amber-400">
-                                        {contactSettings.availabilityStatus}
+                                    <p className="text-lg text-amber-400 font-light">
+                                        {settings.availabilityStatus}
                                     </p>
                                 </div>
                             </div>
@@ -142,7 +151,7 @@ export default function ContactPage() {
                                             />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl font-light mb-4">Message Sent!</h3>
+                                    <h3 className="text-2xl font-light mb-4 text-white">Message Sent!</h3>
                                     <p className="text-white/60 mb-6">
                                         Thank you for reaching out. I&apos;ll be in touch soon.
                                     </p>
@@ -160,7 +169,7 @@ export default function ContactPage() {
                                         <input
                                             type="text"
                                             placeholder="Your Name"
-                                            className="form-input w-full"
+                                            className="form-input w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-amber-400 outline-none transition-colors"
                                             {...register('name', { required: 'Name is required' })}
                                         />
                                         {errors.name && (
@@ -173,7 +182,7 @@ export default function ContactPage() {
                                         <input
                                             type="email"
                                             placeholder="Email Address"
-                                            className="form-input w-full"
+                                            className="form-input w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-amber-400 outline-none transition-colors"
                                             {...register('email', {
                                                 required: 'Email is required',
                                                 pattern: {
@@ -187,32 +196,19 @@ export default function ContactPage() {
                                         )}
                                     </div>
 
-                                    {/* Date */}
-                                    <div>
-                                        <input
-                                            type="date"
-                                            placeholder="Project Start Date"
-                                            className="form-input w-full"
-                                            {...register('date')}
-                                        />
-                                    </div>
-
                                     {/* Service Type */}
                                     <div>
                                         <select
-                                            className="form-input w-full bg-[#0d2137] cursor-pointer [&>option]:bg-[#0d2137] [&>option]:text-white"
+                                            className="form-input w-full bg-[#0d2137] border-b border-white/20 py-4 text-white/50 focus:text-white focus:border-amber-400 outline-none cursor-pointer transition-colors [&>option]:bg-[#0d2137] [&>option]:text-white"
                                             {...register('serviceType', { required: 'Please select a service' })}
                                             defaultValue=""
                                         >
-                                            <option value="" disabled className="bg-[#0d2137] text-white">
-                                                Select Service Type
-                                            </option>
-                                            <option value="project-management" className="bg-[#0d2137] text-white">Project Management & M&E</option>
-                                            <option value="gis" className="bg-[#0d2137] text-white">GIS & Spatial Intelligence</option>
-                                            <option value="ai-qa" className="bg-[#0d2137] text-white">AI Training Data & QA</option>
-                                            <option value="green-tech" className="bg-[#0d2137] text-white">Green Tech Integration</option>
-                                            <option value="infrastructure" className="bg-[#0d2137] text-white">Sustainable Infrastructure</option>
-                                            <option value="other" className="bg-[#0d2137] text-white">Other</option>
+                                            <option value="" disabled>Select Service Type</option>
+                                            <option value="project-management">Project Management & M&E</option>
+                                            <option value="gis">GIS & Spatial Intelligence</option>
+                                            <option value="ai-qa">AI Training Data & QA</option>
+                                            <option value="consultancy">Strategic Consultancy</option>
+                                            <option value="other">Other</option>
                                         </select>
                                         {errors.serviceType && (
                                             <p className="mt-2 text-xs text-red-400">{errors.serviceType.message}</p>
@@ -224,7 +220,7 @@ export default function ContactPage() {
                                         <textarea
                                             placeholder="Tell me about your project..."
                                             rows={5}
-                                            className="form-input w-full resize-none"
+                                            className="form-input w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-amber-400 outline-none resize-none transition-colors"
                                             {...register('message', { required: 'Message is required' })}
                                         />
                                         {errors.message && (
@@ -236,7 +232,7 @@ export default function ContactPage() {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full py-4 bg-white text-black text-sm tracking-[0.2em] uppercase hover:bg-white/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                        className="w-full py-4 bg-amber-400 text-black text-sm tracking-[0.2em] uppercase hover:bg-amber-300 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                                     >
                                         {isSubmitting ? 'Sending...' : 'Send Message'}
                                     </button>
