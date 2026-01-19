@@ -34,7 +34,7 @@ export default function Navbar() {
         <>
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                    ? 'bg-black/80 backdrop-blur-md border-b border-white/5'
+                    ? 'bg-[#0d2137]/90 backdrop-blur-md border-b border-white/5'
                     : 'bg-transparent'
                     }`}
             >
@@ -42,7 +42,8 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link
                         href="/"
-                        className="text-xl md:text-2xl font-light tracking-[0.2em] text-white hover:text-white/80 transition-colors"
+                        className={`text-xl md:text-2xl font-light tracking-[0.2em] transition-colors ${isScrolled ? 'text-white' : 'text-[#0d2137]'
+                            } hover:text-white/80`}
                     >
                         {siteConfig.clientName}
                     </Link>
@@ -53,7 +54,8 @@ export default function Navbar() {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="text-sm tracking-[0.15em] text-white/70 hover:text-white transition-colors uppercase"
+                                className={`text-sm tracking-[0.15em] transition-colors uppercase ${isScrolled ? 'text-white/70 hover:text-white' : 'text-[#0d2137]/70 hover:text-[#0d2137]'
+                                    }`}
                             >
                                 {link.label}
                             </Link>
@@ -72,18 +74,20 @@ export default function Navbar() {
                                     rotate: isMobileMenuOpen ? 45 : 0,
                                     y: isMobileMenuOpen ? 6 : 0,
                                 }}
-                                className="w-6 h-0.5 bg-white block origin-center"
+                                className={`w-6 h-0.5 block origin-center ${isScrolled || isMobileMenuOpen ? 'bg-white' : 'bg-[#0d2137]'
+                                    }`}
                             />
                             <motion.span
                                 animate={{ opacity: isMobileMenuOpen ? 0 : 1 }}
-                                className="w-6 h-0.5 bg-white block"
+                                className={`w-6 h-0.5 block ${isScrolled ? 'bg-white' : 'bg-[#0d2137]'}`}
                             />
                             <motion.span
                                 animate={{
                                     rotate: isMobileMenuOpen ? -45 : 0,
                                     y: isMobileMenuOpen ? -6 : 0,
                                 }}
-                                className="w-6 h-0.5 bg-white block origin-center"
+                                className={`w-6 h-0.5 block origin-center ${isScrolled || isMobileMenuOpen ? 'bg-white' : 'bg-[#0d2137]'
+                                    }`}
                             />
                         </div>
                     </button>
