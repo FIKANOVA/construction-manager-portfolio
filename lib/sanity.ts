@@ -55,6 +55,17 @@ export interface Experience {
   highlights?: string[]
 }
 
+export interface Volunteering {
+  _id: string
+  organization: string
+  role: string
+  location?: string
+  period?: string
+  description?: string
+  website?: string
+  highlights?: string[]
+}
+
 export interface ServicePackage {
   _id: string
   title: string
@@ -122,6 +133,10 @@ export const queries = {
 
   allExperience: `*[_type == "experience"] | order(order asc) {
     _id, company, role, location, period, description, website, highlights
+  }`,
+
+  allVolunteering: `*[_type == "volunteering"] | order(order asc) {
+    _id, organization, role, location, period, description, website, highlights
   }`,
 
   allServicePackages: `*[_type == "servicePackage"] | order(category) {

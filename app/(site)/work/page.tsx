@@ -1,6 +1,6 @@
 import ScrollReveal from '@/app/components/ScrollReveal'
 import { client, queries } from '@/lib/sanity'
-import type { Experience } from '@/lib/sanity'
+import type { Experience, Volunteering } from '@/lib/sanity'
 
 export const revalidate = 60
 
@@ -51,21 +51,6 @@ const fallbackExperience = [
         ],
     },
     {
-        _id: '4',
-        company: 'ETCO Kenya',
-        role: 'Monitoring and Evaluation Officer (Volunteer)',
-        location: 'Nairobi, Kenya',
-        period: 'Jan 2024 - Aug 2025',
-        description: 'Supporting organisational growth and accountability by implementing robust M&E systems to assess the performance and impact of development initiatives.',
-        website: 'https://www.etco-kenya.org/',
-        highlights: [
-            'Design and deploy M&E tools to assess program outcomes',
-            'Collect and analyse field data to generate actionable insights',
-            'Support adaptive management with evidence-based recommendations',
-            'Facilitate cross-functional collaboration between teams',
-        ],
-    },
-    {
         _id: '5',
         company: 'LIMA Labs',
         role: 'Data Quality Specialist',
@@ -109,9 +94,31 @@ const fallbackExperience = [
     },
 ]
 
+// Fallback Volunteering
+const fallbackVolunteering = [
+    {
+        _id: 'v1',
+        organization: 'ETCO Kenya',
+        role: 'Monitoring and Evaluation Officer (Volunteer)',
+        location: 'Nairobi, Kenya',
+        period: 'Jan 2024 - Aug 2025',
+        description: 'Supporting organisational growth and accountability by implementing robust M&E systems to assess the performance and impact of development initiatives.',
+        website: 'https://www.etco-kenya.org/',
+        highlights: [
+            'Design and deploy M&E tools to assess program outcomes',
+            'Collect and analyse field data to generate actionable insights',
+            'Support adaptive management with evidence-based recommendations',
+            'Facilitate cross-functional collaboration between teams',
+        ],
+    },
+]
+
 export default async function WorkPage() {
     const sanityExperience = await client.fetch<Experience[]>(queries.allExperience)
+    const sanityVolunteering = await client.fetch<Volunteering[]>(queries.allVolunteering)
+
     const displayExperience = sanityExperience.length > 0 ? sanityExperience : fallbackExperience
+    const displayVolunteering = sanityVolunteering.length > 0 ? sanityVolunteering : fallbackVolunteering
 
     return (
         <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
@@ -181,6 +188,71 @@ export default async function WorkPage() {
                         </ScrollReveal>
                     ))}
                 </div>
+
+                {/* Volunteering Section */}
+                {displayVolunteering.length > 0 && (
+                    <div className="mt-24">
+                        <ScrollReveal>
+                            <h2 className="text-3xl font-light tracking-[0.15em] uppercase mb-12 text-white">
+                                Volunteering
+                            </h2>
+                        </ScrollReveal>
+                        <div className="space-y-12">
+                            {displayVolunteering.map((volunteer: any, index: number) => (
+                                <ScrollReveal key={volunteer._id} delay={index * 0.05}>
+                                    <div className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+                                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                                            <div>
+                                                <div className="flex items-center gap-3">
+                                                    <h2 className="text-xl md:text-2xl font-light tracking-wide text-white">
+                                                        {volunteer.organization}
+                                                    </h2>
+                                                    {volunteer.website && (
+                                                        <a
+                                                            href={volunteer.website}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/50 hover:text-amber-400 transition-all border border-white/10 group"
+                                                            title={`Visit ${volunteer.organization}`}
+                                                        >
+                                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:scale-110">
+                                                                <path d="M10 6H6C4.89543 6 4 6.89543 4 8V18C4 19.1046 4.89543 20 6 20H16C17.1046 20 18 19.1046 18 18V14M14 4H20M20 4V10M20 4L10 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            </svg>
+                                                        </a>
+                                                    )}
+                                                </div>
+                                                <p className="text-amber-400 text-sm tracking-wide mt-1">
+                                                    {volunteer.role}
+                                                </p>
+                                            </div>
+                                            <div className="text-right">
+                                                <p className="text-xs tracking-[0.15em] text-white uppercase opacity-90">
+                                                    {volunteer.period}
+                                                </p>
+                                                <p className="text-xs text-white mt-1 opacity-70">
+                                                    {volunteer.location}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <p className="text-white leading-relaxed mb-6 opacity-90">
+                                            {volunteer.description}
+                                        </p>
+
+                                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                            {volunteer.highlights?.map((highlight: string, i: number) => (
+                                                <li key={i} className="flex items-center gap-3 text-white text-sm opacity-85">
+                                                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0" />
+                                                    {highlight}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </ScrollReveal>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {/* Education Section */}
                 <ScrollReveal delay={0.3}>
