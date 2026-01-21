@@ -208,10 +208,10 @@ export default async function AboutPage() {
                                         <p className="text-xs tracking-[0.15em] text-amber-400 uppercase mb-2">
                                             {edu.period}
                                         </p>
-                                        <h4 className="text-lg font-light mb-1">
+                                        <h4 className="text-lg font-light mb-1 text-white/70">
                                             {edu.degree}
                                         </h4>
-                                        <p className="text-white/80 text-sm">
+                                        <p className="text-white text-sm">
                                             {edu.institution}
                                         </p>
                                     </div>

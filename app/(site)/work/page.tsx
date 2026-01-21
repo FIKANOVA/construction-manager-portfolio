@@ -196,7 +196,7 @@ export default async function WorkPage() {
                                 <h3 className="text-lg font-light mb-1 text-white/70">
                                     MA Project Planning and Management
                                 </h3>
-                                <p className="text-white/80 text-sm">
+                                <p className="text-white text-sm">
                                     University of Nairobi
                                 </p>
                             </div>
@@ -207,7 +207,7 @@ export default async function WorkPage() {
                                 <h3 className="text-lg font-light mb-1 text-white/70">
                                     BSc Construction Management
                                 </h3>
-                                <p className="text-white/80 text-sm">
+                                <p className="text-white text-sm">
                                     University of Nairobi
                                 </p>
                             </div>

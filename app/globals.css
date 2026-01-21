@@ -19,7 +19,7 @@
   /* Light Borders */
 }
 
-@theme inline {
+@theme {
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-secondary: var(--secondary);

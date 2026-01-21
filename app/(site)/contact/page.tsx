@@ -17,7 +17,6 @@ interface ContactSettings {
 interface FormData {
     name: string
     email: string
-    date: string
     serviceType: string
     message: string
 }
@@ -204,23 +203,6 @@ export default function ContactPage() {
                                         {errors.email && (
                                             <p className="mt-2 text-xs text-red-500">{errors.email.message}</p>
                                         )}
-                                    </div>
-
-                                    {/* Date */}
-                                    <div className="group relative">
-                                        <input
-                                            type="date"
-                                            className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/40 focus:border-white outline-none transition-colors appearance-none"
-                                            {...register('date')}
-                                        />
-                                        <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                                            </svg>
-                                        </div>
                                     </div>
 
                                     {/* Service Type */}
