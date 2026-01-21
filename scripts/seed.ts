@@ -12,7 +12,7 @@ import { config } from 'dotenv'
 config({ path: '.env.local' })
 
 // Configuration
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'cpjzxobo'
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '5x0wp0xx'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 const token = process.env.SANITY_API_TOKEN
 

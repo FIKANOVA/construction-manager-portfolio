@@ -1,6 +1,6 @@
-# Deployment Guide: VUYOPHOTO Portfolio
+# Deployment Guide: Bruce Odhiambo Portfolio
 
-Deploy to **Cloudflare Pages** with custom domain `vuyo.fikanova.co.ke` and **Sanity Studio** for client content editing.
+Deploy to **Cloudflare Pages** with custom domain `bruce.fikanovaco.ke` and **Sanity Studio** for client content editing.
 
 ---
 
@@ -21,16 +21,16 @@ echo ".env.local" >> .gitignore
 git init
 
 # Create GitHub repo (use GitHub CLI or web interface)
-# Name: vuyophoto-portfolio
+# Name: construction-manager-portfolio
 
-git remote add origin https://github.com/YOUR_ORG/vuyophoto-portfolio.git
+git remote add origin https://github.com/YOUR_ORG/construction-manager-portfolio.git
 ```
 
 ### 1.3 Commit and push
 
 ```bash
 git add .
-git commit -m "Initial commit: VUYOPHOTO portfolio"
+git commit -m "Initial commit: Bruce Odhiambo portfolio"
 git push -u origin main
 ```
 
@@ -43,7 +43,7 @@ git push -u origin main
 1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
 2. Navigate to **Workers & Pages** → **Create**
 3. Select **Pages** → **Connect to Git**
-4. Authorize GitHub and select `vuyophoto-portfolio`
+4. Authorize GitHub and select `construction-manager-portfolio`
 5. Configure build settings:
 
 | Setting | Value |
@@ -59,9 +59,9 @@ In Cloudflare Pages project settings → **Environment Variables**, add:
 
 | Variable | Value |
 |----------|-------|
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `cpjzxobo` |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `5x0wp0xx` |
 | `NEXT_PUBLIC_SANITY_DATASET` | `production` |
-| `NEXT_PUBLIC_SITE_URL` | `https://vuyo.fikanova.co.ke` |
+| `NEXT_PUBLIC_SITE_URL` | `https://bruce.fikanovaco.ke` |
 | `SANITY_API_TOKEN` | (your token) |
 
 > ⚠️ Add these for **both** Production and Preview environments.
@@ -73,7 +73,7 @@ In Cloudflare Pages project settings → **Environment Variables**, add:
 ### 3.1 Add custom domain in Cloudflare Pages
 
 1. In your Pages project → **Custom domains** → **Set up a custom domain**
-2. Enter: `vuyo.fikanova.co.ke`
+2. Enter: `bruce.fikanovaco.ke`
 3. Click **Activate domain**
 
 ### 3.2 Configure DNS (if fikanova.co.ke is on Cloudflare)
@@ -82,7 +82,7 @@ Cloudflare will auto-configure DNS. If manual setup needed:
 
 | Type | Name | Target |
 |------|------|--------|
-| CNAME | vuyo | `vuyophoto-portfolio.pages.dev` |
+| CNAME | vuyo | `construction-manager-portfolio.pages.dev` |
 
 ### 3.3 Enable HTTPS
 
@@ -97,21 +97,21 @@ The Sanity Studio is now embedded directly in your application at `/studio`.
 ### 4.1 Accessing the Dashboard
 
 Once deployed, the dashboard will be available at:
-**`https://vuyo.fikanova.co.ke/studio`**
+**`https://bruce.fikanovaco.ke/studio`**
 
 No separate deployment is needed! It deploys automatically with your Next.js app.
 
 ### 4.2 Configure CORS
 
 1. Go to [sanity.io/manage](https://sanity.io/manage)
-2. Select project `cpjzxobo`
+2. Select project `5x0wp0xx`
 3. **API** → **CORS Origins**
-4. Add credentialed origin: `https://vuyo.fikanova.co.ke` (and `http://localhost:3000` for testing)
+4. Add credentialed origin: `https://bruce.fikanovaco.ke` (and `http://localhost:3000` for testing)
 
 ### 4.3 Invite Client to Sanity
 
 1. Go to [sanity.io/manage](https://sanity.io/manage)
-2. Select project `cpjzxobo`
+2. Select project `5x0wp0xx`
 3. **Settings** → **Members** → **Invite member**
 4. Enter client email and set role to **Editor**
 
@@ -121,9 +121,9 @@ No separate deployment is needed! It deploys automatically with your Next.js app
 
 | Purpose | URL |
 |---------|-----|
-| **Live Site** | https://vuyo.fikanova.co.ke |
-| **Client Dashboard** | https://vuyo.fikanova.co.ke/studio |
-| **Staging** | https://vuyophoto-portfolio.pages.dev |
+| **Live Site** | https://bruce.fikanovaco.ke |
+| **Client Dashboard** | https://bruce.fikanovaco.ke/studio |
+| **Staging** | https://construction-manager-portfolio.pages.dev |
 
 ---
 
@@ -137,10 +137,10 @@ The `.github/workflows/deploy.yml` is already configured. Add these secrets to G
 |--------|-------------|
 | `CLOUDFLARE_API_TOKEN` | [Create here](https://dash.cloudflare.com/profile/api-tokens) (Edit Pages) |
 | `CLOUDFLARE_ACCOUNT_ID` | Found in Cloudflare dashboard URL |
-| `CLOUDFLARE_PROJECT_NAME` | `vuyophoto-portfolio` |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `cpjzxobo` |
+| `CLOUDFLARE_PROJECT_NAME` | `construction-manager-portfolio` |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID` | `5x0wp0xx` |
 | `NEXT_PUBLIC_SANITY_DATASET` | `production` |
-| `NEXT_PUBLIC_SITE_URL` | `https://vuyo.fikanova.co.ke` |
+| `NEXT_PUBLIC_SITE_URL` | `https://bruce.fikanovaco.ke` |
 
 ---
 

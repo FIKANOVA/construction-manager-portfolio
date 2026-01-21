@@ -118,10 +118,10 @@ export default async function WorkPage() {
             <div className="container mx-auto px-6">
                 {/* Header */}
                 <ScrollReveal>
-                    <h1 className="text-4xl md:text-6xl font-light tracking-[0.2em] uppercase mb-4">
+                    <h1 className="text-4xl md:text-6xl font-light tracking-[0.2em] uppercase mb-4 text-white">
                         Experience
                     </h1>
-                    <p className="text-white/60 max-w-xl mb-16">
+                    <p className="text-white max-w-xl mb-16 opacity-80">
                         Professional journey in construction management, GIS analysis, project leadership, and AI data quality.
                     </p>
                 </ScrollReveal>
@@ -134,7 +134,7 @@ export default async function WorkPage() {
                                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                                     <div>
                                         <div className="flex items-center gap-3">
-                                            <h2 className="text-xl md:text-2xl font-light tracking-wide">
+                                            <h2 className="text-xl md:text-2xl font-light tracking-wide text-white">
                                                 {exp.company}
                                             </h2>
                                             {exp.website && (
@@ -156,22 +156,22 @@ export default async function WorkPage() {
                                         </p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-xs tracking-[0.15em] text-white/50 uppercase">
+                                        <p className="text-xs tracking-[0.15em] text-white uppercase opacity-90">
                                             {exp.period}
                                         </p>
-                                        <p className="text-xs text-white/40 mt-1">
+                                        <p className="text-xs text-white mt-1 opacity-70">
                                             {exp.location}
                                         </p>
                                     </div>
                                 </div>
 
-                                <p className="text-white/60 leading-relaxed mb-6">
+                                <p className="text-white leading-relaxed mb-6 opacity-90">
                                     {exp.description}
                                 </p>
 
                                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
                                     {exp.highlights?.map((highlight: string, i: number) => (
-                                        <li key={i} className="flex items-center gap-3 text-white/50 text-sm">
+                                        <li key={i} className="flex items-center gap-3 text-white text-sm opacity-85">
                                             <span className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0" />
                                             {highlight}
                                         </li>
@@ -185,7 +185,7 @@ export default async function WorkPage() {
                 {/* Education Section */}
                 <ScrollReveal delay={0.3}>
                     <div className="mt-24 pt-16 border-t border-white/10">
-                        <h2 className="text-3xl font-light tracking-[0.15em] uppercase mb-12 text-center">
+                        <h2 className="text-3xl font-light tracking-[0.15em] uppercase mb-12 text-center text-white">
                             Education
                         </h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
@@ -193,10 +193,10 @@ export default async function WorkPage() {
                                 <p className="text-xs tracking-[0.15em] text-amber-400 uppercase mb-2">
                                     2023 - Present
                                 </p>
-                                <h3 className="text-lg font-light mb-1">
+                                <h3 className="text-lg font-light mb-1 text-white/70">
                                     MA Project Planning and Management
                                 </h3>
-                                <p className="text-white/50 text-sm">
+                                <p className="text-white/80 text-sm">
                                     University of Nairobi
                                 </p>
                             </div>
@@ -204,10 +204,10 @@ export default async function WorkPage() {
                                 <p className="text-xs tracking-[0.15em] text-amber-400 uppercase mb-2">
                                     2016 - 2020
                                 </p>
-                                <h3 className="text-lg font-light mb-1">
+                                <h3 className="text-lg font-light mb-1 text-white/70">
                                     BSc Construction Management
                                 </h3>
-                                <p className="text-white/50 text-sm">
+                                <p className="text-white/80 text-sm">
                                     University of Nairobi
                                 </p>
                             </div>

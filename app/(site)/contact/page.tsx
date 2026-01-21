@@ -69,58 +69,68 @@ export default function ContactPage() {
                     {/* Left Column - Info */}
                     <div>
                         <ScrollReveal>
-                            <h1 className="text-4xl md:text-6xl font-light tracking-[0.2em] uppercase mb-4 text-white">
+                            <h1 className="text-5xl md:text-7xl font-light tracking-[0.2em] uppercase mb-8 text-white">
                                 Get in Touch
                             </h1>
-                            <p className="text-white/60 mb-12 max-w-md">
-                                Ready to collaborate on your next project?
+                            <p className="text-white opacity-60 mb-16 max-w-md leading-relaxed">
+                                Ready to collaborate on your next construction, GIS, or development project?
                                 Fill out the form and I&apos;ll get back to you within 24 hours.
                             </p>
                         </ScrollReveal>
 
                         <ScrollReveal delay={0.1}>
-                            <div className="space-y-8">
+                            <div className="space-y-12">
                                 {/* Email */}
                                 <div>
-                                    <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
+                                    <p className="text-xs tracking-[0.3em] text-white opacity-40 uppercase mb-4">
                                         Email
                                     </p>
                                     <a
-                                        href={`mailto:${settings.email}`}
-                                        className="text-lg text-white hover:text-amber-400 transition-colors"
+                                        href={`mailto:${siteConfig.contact.email}`}
+                                        className="text-xl text-white hover:text-amber-400 transition-colors tracking-wide"
                                     >
-                                        {settings.email}
+                                        {siteConfig.contact.email}
                                     </a>
                                 </div>
 
                                 {/* Phone */}
                                 <div>
-                                    <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
+                                    <p className="text-xs tracking-[0.3em] text-white opacity-40 uppercase mb-4">
                                         Phone
                                     </p>
-                                    <a
-                                        href={`tel:${settings.phone}`}
-                                        className="text-lg text-white hover:text-amber-400 transition-colors"
-                                    >
-                                        {settings.phone}
-                                    </a>
+                                    <div className="space-y-3">
+                                        <a
+                                            href={`tel:${siteConfig.contact.phone.replace(/\s/g, '')}`}
+                                            className="block text-xl text-white hover:text-amber-400 transition-colors tracking-wide"
+                                        >
+                                            {siteConfig.contact.phone} <span className="text-xs opacity-40 ml-2">(KE)</span>
+                                        </a>
+                                        {siteConfig.contact.phoneWork && (
+                                            <a
+                                                href={`tel:${siteConfig.contact.phoneWork.replace(/\s/g, '')}`}
+                                                className="block text-xl text-white hover:text-amber-400 transition-colors tracking-wide"
+                                            >
+                                                {siteConfig.contact.phoneWork} <span className="text-xs opacity-40 ml-2">(DE)</span>
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Location */}
                                 <div>
-                                    <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
+                                    <p className="text-xs tracking-[0.3em] text-white opacity-40 uppercase mb-4">
                                         Location
                                     </p>
-                                    <p className="text-lg text-white">{settings.location}</p>
+                                    <p className="text-xl text-white tracking-wide">{siteConfig.contact.location}</p>
                                 </div>
 
                                 {/* Availability */}
-                                <div className="pt-8 border-t border-white/10">
-                                    <p className="text-xs tracking-[0.2em] text-white/40 uppercase mb-2">
+                                <div className="pt-12 border-t border-white/10">
+                                    <p className="text-xs tracking-[0.3em] text-white opacity-40 uppercase mb-4">
                                         Availability
                                     </p>
-                                    <p className="text-lg text-amber-400 font-light">
-                                        {settings.availabilityStatus}
+                                    <p className="text-xl text-amber-400 font-light tracking-wide">
+                                        {siteConfig.contact.availabilityStatus}
                                     </p>
                                 </div>
                             </div>
@@ -128,7 +138,7 @@ export default function ContactPage() {
                     </div>
 
                     {/* Right Column - Form */}
-                    <div>
+                    <div className="mt-8 lg:mt-4">
                         <ScrollReveal delay={0.2}>
                             {isSubmitted ? (
                                 <motion.div
@@ -136,9 +146,9 @@ export default function ContactPage() {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="py-16 text-center"
                                 >
-                                    <div className="w-16 h-16 mx-auto mb-6 rounded-full border-2 border-green-500 flex items-center justify-center">
+                                    <div className="w-16 h-16 mx-auto mb-6 rounded-full border-2 border-amber-400 flex items-center justify-center">
                                         <svg
-                                            className="w-8 h-8 text-green-500"
+                                            className="w-8 h-8 text-amber-400"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
@@ -151,38 +161,38 @@ export default function ContactPage() {
                                             />
                                         </svg>
                                     </div>
-                                    <h3 className="text-2xl font-light mb-4 text-white">Message Sent!</h3>
-                                    <p className="text-white/60 mb-6">
+                                    <h3 className="text-2xl font-light mb-4 text-white uppercase tracking-wider">Message Sent!</h3>
+                                    <p className="text-white opacity-70 mb-8">
                                         Thank you for reaching out. I&apos;ll be in touch soon.
                                     </p>
                                     <button
                                         onClick={() => setIsSubmitted(false)}
-                                        className="text-sm tracking-[0.1em] text-white/50 hover:text-white transition-colors uppercase"
+                                        className="text-sm tracking-[0.2em] text-white underline underline-offset-8 uppercase hover:text-amber-400 transition-colors"
                                     >
                                         Send Another Message
                                     </button>
                                 </motion.div>
                             ) : (
-                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                                <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
                                     {/* Name */}
-                                    <div>
+                                    <div className="group relative">
                                         <input
                                             type="text"
                                             placeholder="Your Name"
-                                            className="form-input w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-amber-400 outline-none transition-colors"
+                                            className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/40 focus:border-white outline-none transition-colors"
                                             {...register('name', { required: 'Name is required' })}
                                         />
                                         {errors.name && (
-                                            <p className="mt-2 text-xs text-red-400">{errors.name.message}</p>
+                                            <p className="mt-2 text-xs text-red-500">{errors.name.message}</p>
                                         )}
                                     </div>
 
                                     {/* Email */}
-                                    <div>
+                                    <div className="group relative">
                                         <input
                                             type="email"
                                             placeholder="Email Address"
-                                            className="form-input w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-amber-400 outline-none transition-colors"
+                                            className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/40 focus:border-white outline-none transition-colors"
                                             {...register('email', {
                                                 required: 'Email is required',
                                                 pattern: {
@@ -192,50 +202,74 @@ export default function ContactPage() {
                                             })}
                                         />
                                         {errors.email && (
-                                            <p className="mt-2 text-xs text-red-400">{errors.email.message}</p>
+                                            <p className="mt-2 text-xs text-red-500">{errors.email.message}</p>
                                         )}
                                     </div>
 
+                                    {/* Date */}
+                                    <div className="group relative">
+                                        <input
+                                            type="date"
+                                            className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/40 focus:border-white outline-none transition-colors appearance-none"
+                                            {...register('date')}
+                                        />
+                                        <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+
                                     {/* Service Type */}
-                                    <div>
+                                    <div className="group relative">
                                         <select
-                                            className="form-input w-full bg-[#0d2137] border-b border-white/20 py-4 text-white/50 focus:text-white focus:border-amber-400 outline-none cursor-pointer transition-colors [&>option]:bg-[#0d2137] [&>option]:text-white"
+                                            className="w-full bg-[#0d2137] border-b border-white/20 py-4 text-white focus:border-white outline-none cursor-pointer transition-colors appearance-none"
                                             {...register('serviceType', { required: 'Please select a service' })}
                                             defaultValue=""
                                         >
-                                            <option value="" disabled>Select Service Type</option>
-                                            <option value="project-management">Project Management & M&E</option>
-                                            <option value="gis">GIS & Spatial Intelligence</option>
-                                            <option value="ai-qa">AI Training Data & QA</option>
-                                            <option value="consultancy">Strategic Consultancy</option>
+                                            <option value="" disabled className="text-white/40">Select Service Type</option>
+                                            <option value="project-management">Project Management & Oversight</option>
+                                            <option value="gis">Spatial Analysis & Mapping</option>
+                                            <option value="ai-qa">AI Training Data QA</option>
+                                            <option value="consultancy">Strategic Advisory</option>
                                             <option value="other">Other</option>
                                         </select>
+                                        <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </div>
                                         {errors.serviceType && (
-                                            <p className="mt-2 text-xs text-red-400">{errors.serviceType.message}</p>
+                                            <p className="mt-2 text-xs text-red-500">{errors.serviceType.message}</p>
                                         )}
                                     </div>
 
                                     {/* Message */}
-                                    <div>
+                                    <div className="group relative">
                                         <textarea
                                             placeholder="Tell me about your project..."
-                                            rows={5}
-                                            className="form-input w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-amber-400 outline-none resize-none transition-colors"
+                                            rows={4}
+                                            className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/40 focus:border-white outline-none resize-none transition-colors"
                                             {...register('message', { required: 'Message is required' })}
                                         />
                                         {errors.message && (
-                                            <p className="mt-2 text-xs text-red-400">{errors.message.message}</p>
+                                            <p className="mt-2 text-xs text-red-500">{errors.message.message}</p>
                                         )}
                                     </div>
 
                                     {/* Submit Button */}
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="w-full py-4 bg-amber-400 text-black text-sm tracking-[0.2em] uppercase hover:bg-amber-300 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
-                                    >
-                                        {isSubmitting ? 'Sending...' : 'Send Message'}
-                                    </button>
+                                    <div className="pt-8">
+                                        <button
+                                            type="submit"
+                                            disabled={isSubmitting}
+                                            className="w-full py-6 bg-white text-black text-sm tracking-[0.3em] uppercase hover:bg-neutral-200 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                                        >
+                                            {isSubmitting ? 'Sending...' : 'Send Message'}
+                                        </button>
+                                    </div>
                                 </form>
                             )}
                         </ScrollReveal>

@@ -11,8 +11,8 @@
   /* Clean White Background */
   --surface: #f8fafc;
   /* Light Slate Surface */
-  --foreground: #0f172a;
-  /* Dark Slate Text */
+  --foreground: #ffffff;
+  /* White Text */
   --muted: #64748b;
   /* Muted Slate */
   --border: #e2e8f0;
@@ -37,6 +37,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-manrope), system-ui, sans-serif;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Custom scrollbar */

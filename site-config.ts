@@ -56,7 +56,7 @@ export const siteConfig: SiteConfig = {
     clientName: 'Bruce Odhiambo',
     tagline: "Construction Manager's Portfolio",
     description: 'Portfolio of Bruce Odhiambo - Construction Manager & GIS Specialist',
-    baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://bruceodhiambo.com',
+    baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://bruce.fikanovaco.ke',
 
     // ============================================
     // 🎭 THEME

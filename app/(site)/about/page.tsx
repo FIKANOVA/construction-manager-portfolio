@@ -119,13 +119,13 @@ export default async function AboutPage() {
                     {/* Scrolling Text Content */}
                     <div className="space-y-12">
                         <ScrollReveal>
-                            <h1 className="text-4xl md:text-5xl font-light tracking-[0.15em] uppercase mb-4">
+                            <h1 className="text-4xl md:text-5xl font-light tracking-[0.15em] uppercase mb-4 text-white">
                                 About Me
                             </h1>
                             <h2 className="text-xl font-light text-amber-400 mb-2">
                                 {profile.name}
                             </h2>
-                            <p className="text-white/60 text-sm tracking-wide">
+                            <p className="text-white/70 text-sm tracking-wide">
                                 {profile.title}
                             </p>
                         </ScrollReveal>
@@ -133,7 +133,7 @@ export default async function AboutPage() {
                         <ScrollReveal delay={0.1}>
                             <div className="prose prose-invert prose-lg">
                                 {profile.bio?.split('\n\n').map((paragraph, index) => (
-                                    <p key={index} className="text-white/70 leading-relaxed mb-6">
+                                    <p key={index} className="text-white leading-relaxed mb-6 opacity-90">
                                         {paragraph}
                                     </p>
                                 ))}
@@ -144,12 +144,12 @@ export default async function AboutPage() {
                         {profile.interests && profile.interests.length > 0 && (
                             <ScrollReveal delay={0.15}>
                                 <div className="pt-8 border-t border-white/10">
-                                    <h3 className="text-xs tracking-[0.2em] text-white/40 uppercase mb-4">
+                                    <h3 className="text-xs tracking-[0.2em] text-white uppercase mb-4 opacity-70">
                                         Current Interests
                                     </h3>
                                     <ul className="space-y-2">
                                         {profile.interests.map((interest, i) => (
-                                            <li key={i} className="flex items-center gap-3 text-white/60">
+                                            <li key={i} className="flex items-center gap-3 text-white/85">
                                                 <span className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
                                                 {interest}
                                             </li>
@@ -162,19 +162,17 @@ export default async function AboutPage() {
                         {/* Social Links */}
                         <ScrollReveal delay={0.2}>
                             <div className="flex flex-wrap gap-4 pt-8 border-t border-white/10">
-                                {siteConfig.socials.linkedin && (
-                                    <a
-                                        href={siteConfig.socials.linkedin}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-sm tracking-[0.1em] text-white/50 hover:text-white transition-colors uppercase"
-                                    >
-                                        LinkedIn
-                                    </a>
-                                )}
+                                <a
+                                    href={siteConfig.socials.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm tracking-[0.1em] text-white/70 hover:text-white transition-colors uppercase"
+                                >
+                                    LinkedIn
+                                </a>
                                 <a
                                     href={`mailto:${siteConfig.contact.email}`}
-                                    className="text-sm tracking-[0.1em] text-white/50 hover:text-white transition-colors uppercase"
+                                    className="text-sm tracking-[0.1em] text-white/70 hover:text-white transition-colors uppercase"
                                 >
                                     Email
                                 </a>
@@ -183,7 +181,7 @@ export default async function AboutPage() {
                                         href={siteConfig.socials.whatsapp}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-sm tracking-[0.1em] text-white/50 hover:text-white transition-colors uppercase"
+                                        className="text-sm tracking-[0.1em] text-white/70 hover:text-white transition-colors uppercase"
                                     >
                                         WhatsApp
                                     </a>
@@ -199,7 +197,7 @@ export default async function AboutPage() {
                 <section className="py-24 md:py-32 mt-24 border-y border-white/10">
                     <div className="container mx-auto px-6">
                         <ScrollReveal>
-                            <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-12">
+                            <h3 className="text-center text-sm tracking-[0.2em] text-white uppercase mb-12 opacity-70">
                                 Education
                             </h3>
                         </ScrollReveal>
@@ -213,7 +211,7 @@ export default async function AboutPage() {
                                         <h4 className="text-lg font-light mb-1">
                                             {edu.degree}
                                         </h4>
-                                        <p className="text-white/50 text-sm">
+                                        <p className="text-white/80 text-sm">
                                             {edu.institution}
                                         </p>
                                     </div>
@@ -228,7 +226,7 @@ export default async function AboutPage() {
             {profile.skills && profile.skills.length > 0 && (
                 <section className="py-16 overflow-hidden">
                     <ScrollReveal>
-                        <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-8">
+                        <h3 className="text-center text-sm tracking-[0.2em] text-white/70 uppercase mb-8">
                             Skills
                         </h3>
                     </ScrollReveal>
@@ -260,7 +258,7 @@ export default async function AboutPage() {
                 <section className="py-16">
                     <div className="container mx-auto px-6">
                         <ScrollReveal>
-                            <h3 className="text-center text-sm tracking-[0.2em] text-white/40 uppercase mb-12">
+                            <h3 className="text-center text-sm tracking-[0.2em] text-white uppercase mb-12 opacity-70">
                                 Beyond Work
                             </h3>
                         </ScrollReveal>
@@ -271,7 +269,7 @@ export default async function AboutPage() {
                                         <h4 className="text-lg font-light mb-2 text-amber-400">
                                             {hobby.name}
                                         </h4>
-                                        <p className="text-white/50 text-sm">
+                                        <p className="text-white/80 text-sm">
                                             {hobby.description}
                                         </p>
                                     </div>
@@ -289,7 +287,7 @@ export default async function AboutPage() {
                         <h3 className="text-3xl md:text-4xl font-light tracking-wide mb-6">
                             Let&apos;s Work Together
                         </h3>
-                        <p className="text-white/50 mb-8 max-w-md mx-auto">
+                        <p className="text-white/80 mb-8 max-w-md mx-auto">
                             Open to collaborating on sustainability, digital innovation, and infrastructure projects.
                         </p>
                         <Link

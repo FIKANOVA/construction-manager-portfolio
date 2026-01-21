@@ -4,9 +4,9 @@ import type { SanityImageSource } from '@sanity/image-url'
 
 // Configuration
 // Add SANITY_API_TOKEN to your .env.local file
-// Project ID: cpjzxobo
-
-export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'cpjzxobo'
+// Project ID: 5x0wp0xx
+// Dataset: production
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '5x0wp0xx'
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 export const apiVersion = '2024-01-01'
 
