@@ -1,6 +1,7 @@
 import Hero from '@/app/components/Hero'
 import ScrollReveal from '@/app/components/ScrollReveal'
 import Link from 'next/link'
+import { client, queries, type Profile } from '@/lib/sanity'
 
 export const revalidate = 60
 
@@ -26,9 +27,12 @@ const featuredServices = [
 ]
 
 export default async function HomePage() {
+  const profile = await client.fetch<Profile>(queries.profile)
+  const cvUrl = profile?.cvFile
+
   return (
     <>
-      <Hero />
+      <Hero cvUrl={cvUrl} />
 
       {/* Featured Experience Section */}
       <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10 text-white">

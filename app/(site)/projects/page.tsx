@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image' // Keeping Image for Next.js optimization
 import ScrollReveal from '@/app/components/ScrollReveal'
 import { client, queries, urlFor } from '@/lib/sanity'
-import type { Project } from '@/lib/sanity'
+import type { Project, Profile } from '@/lib/sanity'
 
 export const revalidate = 60
 
@@ -33,14 +33,21 @@ const fallbackProjects = [
 
 export default async function ProjectsPage() {
     let sanityProjects: Project[] = []
+    let profile: Profile | null = null
+
     try {
-        sanityProjects = await client.fetch<Project[]>(queries.allProjects)
+        const [projectsData, profileData] = await Promise.all([
+            client.fetch<Project[]>(queries.allProjects),
+            client.fetch<Profile>(queries.profile)
+        ])
+        sanityProjects = projectsData
+        profile = profileData
     } catch (error) {
-        console.error('Failed to fetch projects from Sanity:', error)
-        // Fall back to static data during build if Sanity is unavailable
+        console.error('Failed to fetch data from Sanity:', error)
     }
-    // Use Sanity projects if available, otherwise use fallback (mapped to match structure)
+
     const displayProjects = sanityProjects.length > 0 ? sanityProjects : fallbackProjects
+    const cvUrl = profile?.cvFile || '/BO_CV.pdf'
 
     return (
         <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen text-white">
@@ -172,7 +179,7 @@ export default async function ProjectsPage() {
                                 Contact Me
                             </Link>
                             <Link
-                                href="/BO_CV.pdf"
+                                href={cvUrl}
                                 target="_blank"
                                 className="px-8 py-3 border border-white/30 text-white text-sm tracking-[0.15em] uppercase hover:bg-white hover:text-black transition-all duration-300"
                             >

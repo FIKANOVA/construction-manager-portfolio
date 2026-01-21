@@ -5,7 +5,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { siteConfig } from '@/site-config'
 
-export default function Hero() {
+export default function Hero({ cvUrl }: { cvUrl?: string }) {
+    const displayCvUrl = cvUrl || '/BO_CV.pdf'
+
     return (
         <section className="relative h-screen w-full overflow-hidden bg-[#0a0f14]">
             {/* Construction Background - Full Width, More Transparent */}
@@ -100,7 +102,7 @@ export default function Hero() {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pointer-events-auto">
                         <Link
-                            href="/BO_CV.pdf"
+                            href={displayCvUrl}
                             target="_blank"
                             className="px-8 py-3 bg-[#fbbf24] text-black text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#f59e0b] transition-all shadow-lg text-center"
                         >
