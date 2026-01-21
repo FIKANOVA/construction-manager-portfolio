@@ -14,7 +14,7 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: false, // process.env.NODE_ENV === 'production', // Force fresh data for now
+  useCdn: process.env.NODE_ENV === 'production',
   token: process.env.SANITY_API_TOKEN,
 })
 
