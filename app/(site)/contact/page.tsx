@@ -54,11 +54,30 @@ export default function ContactPage() {
 
     const onSubmit = async (data: FormData) => {
         setIsSubmitting(true)
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500))
-        setIsSubmitting(false)
-        setIsSubmitted(true)
-        reset()
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+
+            const result = await response.json()
+
+            if (response.ok) {
+                setIsSubmitted(true)
+                reset()
+            } else {
+                console.error('Submission failed:', result.error)
+                alert(result.error || 'Something went wrong. Please try again or contact me directly via email.')
+            }
+        } catch (error) {
+            console.error('Submission error:', error)
+            alert('A network error occurred. Please try again or contact me directly via email.')
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
