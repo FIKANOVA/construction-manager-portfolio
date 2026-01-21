@@ -43,7 +43,7 @@ export default async function ProjectsPage() {
     const displayProjects = sanityProjects.length > 0 ? sanityProjects : fallbackProjects
 
     return (
-        <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen">
+        <div className="pt-24 pb-16 bg-[#0d2137] min-h-screen text-white">
             <div className="container mx-auto px-6">
                 {/* Header */}
                 <ScrollReveal>
@@ -64,7 +64,12 @@ export default async function ProjectsPage() {
                                 <div className="space-y-8">
                                     <div className="relative aspect-video overflow-hidden bg-white/5 border border-white/10">
                                         <Image
-                                            src={typeof project.coverImage === 'string' ? project.coverImage : urlFor(project.coverImage).url()}
+                                            src={project.coverImage
+                                                ? (typeof project.coverImage === 'string'
+                                                    ? project.coverImage
+                                                    : urlFor(project.coverImage).url())
+                                                : 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2662&auto=format&fit=crop' // Generic fallback
+                                            }
                                             alt={project.title}
                                             fill
                                             className="object-cover hover:scale-105 transition-transform duration-700"
@@ -92,7 +97,7 @@ export default async function ProjectsPage() {
                                             <span className="text-white/50">{project.period}</span>
                                         </div>
                                         <div className="flex items-center gap-4 mb-2">
-                                            <h2 className="text-3xl md:text-4xl font-light tracking-wide">
+                                            <h2 className="text-3xl md:text-4xl font-light tracking-wide text-white">
                                                 {project.title}
                                             </h2>
                                             {project.projectLink && (
@@ -156,7 +161,7 @@ export default async function ProjectsPage() {
                 {/* CTA Section */}
                 <ScrollReveal delay={0.3}>
                     <div className="mt-24 text-center">
-                        <h3 className="text-2xl font-light tracking-wide mb-6">
+                        <h3 className="text-2xl font-light tracking-wide mb-6 text-white">
                             Want to see more detailed work samples?
                         </h3>
                         <div className="flex justify-center gap-6">

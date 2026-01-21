@@ -34,7 +34,8 @@ export interface Project {
   gallery?: SanityImageSource[]
   category: string
   clientName?: string
-  shootDate?: string
+  projectDate?: string
+  role?: string
   description?: any[]
   projectLink?: string
   challenge?: string
@@ -105,17 +106,18 @@ export interface Profile {
 
 // GROQ Queries
 export const queries = {
-  allProjects: `*[_type == "project"] | order(shootDate desc) {
-    _id, title, slug, coverImage, category, clientName, shootDate, projectLink, description,
+  allProjects: `*[_type == "project"] | order(projectDate desc) {
+    _id, title, slug, coverImage, category, clientName, projectDate, role, projectLink, description,
     challenge, solution, impact, tags
   }`,
 
-  featuredProjects: `*[_type == "project"] | order(shootDate desc)[0...4] {
+  featuredProjects: `*[_type == "project"] | order(projectDate desc)[0...4] {
     _id, title, slug, coverImage, category, projectLink
   }`,
 
   projectBySlug: `*[_type == "project" && slug.current == $slug][0] {
-    _id, title, slug, coverImage, gallery, category, clientName, shootDate, description, projectLink
+    _id, title, slug, coverImage, gallery, category, clientName, projectDate, role, description, projectLink,
+    challenge, solution, impact, tags
   }`,
 
   allExperience: `*[_type == "experience"] | order(order asc) {

@@ -3,139 +3,153 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { siteConfig } from '@/site-config'
 
 export default function Hero() {
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-white">
-            {/* Layer 1: Subtle Geometric Glass Elements in Background */}
-            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <section className="relative h-screen w-full overflow-hidden bg-[#0a0f14]">
+            {/* Construction Background - Full Width, More Transparent */}
+            <div className="absolute inset-0 z-0">
                 <motion.div
+                    initial={{ scale: 1.1 }}
                     animate={{
-                        rotate: [0, 360],
-                        scale: [1, 1.2, 1],
+                        scale: [1.1, 1.15, 1.1],
+                        x: [0, -20, 0],
+                        y: [0, -10, 0]
                     }}
                     transition={{
-                        duration: 40,
+                        duration: 20,
                         repeat: Infinity,
-                        ease: "linear",
+                        ease: "easeInOut"
                     }}
-                    className="absolute -top-[10%] -left-[5%] w-[40%] aspect-square border border-[#0d2137]/5 rounded-[4rem] rotate-12 bg-gradient-to-br from-white/20 to-[#0d2137]/5"
+                    className="w-full h-full"
+                >
+                    <Image
+                        src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+                        alt="Construction Background"
+                        fill
+                        className="object-cover opacity-30"
+                    />
+                </motion.div>
+                {/* Uniform gradient overlay across entire hero */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.15) 35%, rgba(0, 0, 0, 0.4) 65%, rgba(0, 0, 0, 0.6) 100%)"
+                    }}
                 />
-                <motion.div
-                    animate={{
-                        rotate: [360, 0],
-                        scale: [1, 1.1, 1],
+                {/* Radial light gradient to blend portrait with background */}
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: "radial-gradient(ellipse 60% 70% at 50% 35%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.06) 30%, transparent 60%)"
                     }}
-                    transition={{
-                        duration: 50,
-                        repeat: Infinity,
-                        ease: "linear",
-                    }}
-                    className="absolute bottom-[5%] -right-[10%] w-[50%] aspect-square border border-[#0d2137]/5 rounded-[6rem] -rotate-12 bg-gradient-to-tl from-white/20 to-[#0d2137]/5"
                 />
             </div>
 
-            {/* Layer 2: Bruce's Profile Image - Sharp & High Contrast */}
-            <div className="absolute inset-x-0 bottom-0 top-16 z-0 flex justify-center items-end">
-                <div className="relative w-full h-[95%] max-w-5xl">
+            {/* Portrait Image - Emerging from Construction Site */}
+            <div className="absolute inset-0 z-10 flex justify-center items-center pointer-events-none">
+                <div className="relative w-full h-full max-w-4xl">
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 100 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
-                        className="relative w-full h-full"
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="relative w-full h-full flex justify-center items-center -mt-20 md:-mt-16"
                     >
                         <Image
-                            src="/bruce-headshot.jpg"
+                            src="/bruce-portrait-new.jpg"
                             alt="Bruce Odhiambo"
-                            fill
+                            width={600}
+                            height={700}
                             priority
-                            className="object-contain object-bottom opacity-100 grayscale-[0.2] contrast-125 brightness-105 [mask-image:linear-gradient(to_top,black_60%,transparent_98%)]"
+                            className="object-contain object-center h-[95%] md:h-[100%] w-auto relative z-0 opacity-60 mix-blend-soft-light"
+                            style={{
+                                maskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.7) 20%, rgba(0,0,0,0.5) 50%, transparent 85%), radial-gradient(ellipse at center, black 40%, transparent 75%)",
+                                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.3) 10%, rgba(0,0,0,0.7) 20%, rgba(0,0,0,0.5) 50%, transparent 85%), radial-gradient(ellipse at center, black 40%, transparent 75%)",
+                                maskComposite: "intersect",
+                                WebkitMaskComposite: "source-in",
+                                filter: "brightness(0.75) contrast(1.15) saturate(0.8) sepia(0.1)"
+                            }}
                         />
                     </motion.div>
                 </div>
             </div>
 
-            {/* Layer 3: Crystal Clear Glass Card Over Content */}
-            <div className="relative z-30 h-full flex items-center justify-center px-6">
+
+
+            {/* Text Content - Centered */}
+            <div className="relative z-30 h-full flex flex-col justify-center items-center px-6 text-center">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="max-w-4xl w-full p-12 md:p-20 relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    className="flex flex-col items-center w-full"
                 >
-                    {/* Glass Backdrop Effect - Reduced opacity and blur for clarity */}
-                    <div className="absolute inset-0 z-0 bg-white/5 backdrop-blur-[2px] border border-white/20 shadow-[0_8px_32px_rgba(13,33,55,0.03)] rounded-3xl" />
+                    {/* Name - White */}
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.15em] md:tracking-[0.18em] text-white mb-6 drop-shadow-lg uppercase">
+                        Bruce Odhiambo
+                    </h1>
 
-                    <div className="relative z-10 text-center">
-                        {/* Tagline */}
-                        <motion.span
-                            initial={{ letterSpacing: '0.2em', opacity: 0 }}
-                            animate={{ letterSpacing: '0.6em', opacity: 1 }}
-                            transition={{ duration: 1.5, delay: 0.8 }}
-                            className="block text-[10px] md:text-sm font-light text-[#0d2137]/60 uppercase mb-8"
-                        >
-                            Integrity • Precision • Future
-                        </motion.span>
+                    {/* Roles */}
+                    <div className="flex flex-col md:flex-row items-center gap-3 mb-12 font-bold tracking-[0.2em] uppercase text-xs">
+                        <span className="text-[#fbbf24]">Construction Manager</span>
+                        <span className="hidden md:block text-white/40">|</span>
+                        <span className="text-white">Digital Product Lead</span>
+                    </div>
 
-                        {/* Name */}
-                        <motion.h1
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ duration: 0.8, delay: 1 }}
-                            className="text-5xl md:text-8xl lg:text-[10rem] font-extralight tracking-tight text-[#0d2137] leading-none mb-10"
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pointer-events-auto">
+                        <Link
+                            href="/BO_CV.pdf"
+                            target="_blank"
+                            className="px-8 py-3 bg-[#fbbf24] text-black text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#f59e0b] transition-all shadow-lg text-center"
                         >
-                            Bruce <span className="font-light">Odhiambo</span>
-                        </motion.h1>
-
-                        {/* Title */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1, delay: 1.5 }}
-                            className="flex flex-col items-center gap-6"
+                            View CV
+                        </Link>
+                        <Link
+                            href="/contact"
+                            className="px-8 py-3 bg-transparent border-2 border-white/40 text-white text-xs tracking-[0.2em] uppercase font-bold hover:bg-white hover:text-black transition-all text-center"
                         >
-                            <div className="w-12 h-[1px] bg-[#0d2137]/20" />
-                            <p className="text-sm md:text-xl tracking-[0.3em] text-[#0d2137]/80 uppercase font-light">
-                                Construction Manager & Digital Lead
-                            </p>
-                        </motion.div>
-
-                        {/* Actions */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 2 }}
-                            className="mt-16 flex flex-col sm:flex-row gap-8 justify-center"
-                        >
-                            <Link
-                                href="/contact"
-                                className="px-12 py-4 bg-[#0d2137] text-white text-xs tracking-[0.3em] uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_20px_40px_rgba(13,33,55,0.2)]"
-                            >
-                                Contact Me
-                            </Link>
-                            <Link
-                                href="/BO_CV.pdf"
-                                target="_blank"
-                                className="px-12 py-4 border border-[#0d2137]/30 text-[#0d2137] text-xs tracking-[0.3em] uppercase transition-all duration-300 hover:bg-[#0d2137] hover:text-white"
-                            >
-                                View CV
-                            </Link>
-                        </motion.div>
+                            Get In Touch
+                        </Link>
                     </div>
                 </motion.div>
-
-                {/* Vertical Scroll Hint */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2.5 }}
-                    className="absolute bottom-10 flex flex-col items-center gap-4"
-                >
-                    <div className="w-[1px] h-16 bg-gradient-to-b from-[#0d2137]/0 via-[#0d2137]/40 to-[#0d2137]/0" />
-                    <span className="text-[9px] tracking-[0.5em] text-[#0d2137]/30 uppercase rotate-180 [writing-mode:vertical-lr]">Scroll</span>
-                </motion.div>
             </div>
+
+            {/* Scroll Indicator - Teardrop Icon */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 }}
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2"
+            >
+                {/* Teardrop/Water Drop Icon */}
+                <motion.div
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative"
+                >
+                    <svg
+                        width="24"
+                        height="32"
+                        viewBox="0 0 24 32"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="drop-shadow-lg"
+                    >
+                        <path
+                            d="M12 0C12 0 0 14 0 22C0 27.5228 5.37258 32 12 32C18.6274 32 24 27.5228 24 22C24 14 12 0 12 0Z"
+                            fill="white"
+                            fillOpacity="0.7"
+                        />
+                    </svg>
+                </motion.div>
+
+                {/* "SCROLL" Text - White */}
+                <span className="text-white/70 text-[9px] tracking-[0.2em] uppercase font-light">
+                    Scroll
+                </span>
+            </motion.div>
         </section>
     )
 }
-

@@ -31,10 +31,10 @@ export default async function HomePage() {
       <Hero />
 
       {/* Featured Experience Section */}
-      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10">
+      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10 text-white">
         <div className="container mx-auto px-6">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-light tracking-[0.15em] uppercase mb-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-light tracking-[0.15em] uppercase mb-12 text-center text-white">
               Experience
             </h2>
           </ScrollReveal>
@@ -46,7 +46,7 @@ export default async function HomePage() {
                   <p className="text-xs tracking-[0.2em] text-amber-400 uppercase mb-2">
                     {exp.role}
                   </p>
-                  <h3 className="text-xl font-light tracking-wide mb-3">
+                  <h3 className="text-xl font-light tracking-wide mb-3 text-white">
                     {exp.company}
                   </h3>
                   <p className="text-white/50 text-sm">
@@ -71,10 +71,10 @@ export default async function HomePage() {
       </section>
 
       {/* Services Overview */}
-      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10">
+      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10 text-white">
         <div className="container mx-auto px-6 text-center">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-light tracking-[0.15em] uppercase mb-12">
+            <h2 className="text-3xl md:text-4xl font-light tracking-[0.15em] uppercase mb-12 text-white">
               Services
             </h2>
           </ScrollReveal>
@@ -101,10 +101,10 @@ export default async function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10">
+      <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10 text-white">
         <div className="container mx-auto px-6 text-center">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-5xl font-light tracking-[0.1em] mb-8">
+            <h2 className="text-3xl md:text-5xl font-light tracking-[0.1em] mb-8 text-white">
               Let&apos;s Work Together
             </h2>
             <p className="text-white/60 mb-12 max-w-xl mx-auto">

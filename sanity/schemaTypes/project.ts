@@ -65,6 +65,12 @@ export const project = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'role',
+      title: 'Your Role',
+      type: 'string',
+      description: 'e.g., Site Supervisor, GIS Specialist, etc.',
+    }),
+    defineField({
       name: 'projectLink',
       title: 'Project Link',
       type: 'url',
