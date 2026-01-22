@@ -32,7 +32,11 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero cvUrl={cvUrl} />
+      <Hero
+        cvUrl={cvUrl}
+        heroRole1={profile?.heroRole1}
+        heroRole2={profile?.heroRole2}
+      />
 
       {/* Featured Experience Section */}
       <section className="py-24 md:py-32 bg-[#0d2137] border-t border-white/10 text-white">

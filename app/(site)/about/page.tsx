@@ -230,7 +230,7 @@ export default async function AboutPage() {
                             Skills
                         </h3>
                     </ScrollReveal>
-                    <div className="relative">
+                    <div className="relative group hover-pause">
                         <div className="flex animate-marquee whitespace-nowrap">
                             {profile.skills.map((skill, index) => (
                                 <span

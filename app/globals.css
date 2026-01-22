@@ -29,6 +29,18 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --font-sans: var(--font-manrope);
+
+  --animate-marquee: marquee 120s linear infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 /* Base Styles */
@@ -138,4 +150,8 @@ body {
 
 .form-input::placeholder {
   color: var(--muted);
+}
+
+.hover-pause:hover .animate-marquee {
+  animation-play-state: paused;
 }

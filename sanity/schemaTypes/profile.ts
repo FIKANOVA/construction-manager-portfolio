@@ -24,6 +24,18 @@ export const profile = defineType({
             rows: 6,
         }),
         defineField({
+            name: 'heroRole1',
+            title: 'Hero Role 1',
+            type: 'string',
+            description: 'First role displayed in the hero section (e.g., "Construction Manager")',
+        }),
+        defineField({
+            name: 'heroRole2',
+            title: 'Hero Role 2',
+            type: 'string',
+            description: 'Second role displayed in the hero section (e.g., "Digital Product Lead")',
+        }),
+        defineField({
             name: 'portraitImage',
             title: 'Portrait Image',
             type: 'image',

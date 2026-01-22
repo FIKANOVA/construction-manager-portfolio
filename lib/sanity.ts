@@ -113,6 +113,8 @@ export interface Profile {
   education?: { degree: string; institution: string; period: string }[]
   cvFile?: string
   socialLinks?: { platform: string; url: string }[]
+  heroRole1?: string
+  heroRole2?: string
 }
 
 // GROQ Queries
@@ -155,6 +157,7 @@ export const queries = {
   profile: `*[_type == "profile"][0] {
     _id, name, title, bio, portraitImage, heroBackgroundImage,
     interests, skills, hobbies, education, socialLinks,
+    heroRole1, heroRole2,
     "cvFile": cvFile.asset->url
   }`,
 }

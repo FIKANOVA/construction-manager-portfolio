@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { siteConfig } from '@/site-config'
 
-export default function Hero({ cvUrl }: { cvUrl?: string }) {
+export default function Hero({ cvUrl, heroRole1, heroRole2 }: { cvUrl?: string, heroRole1?: string, heroRole2?: string }) {
     const displayCvUrl = cvUrl || '/BO_CV.pdf'
 
     return (
@@ -94,9 +94,9 @@ export default function Hero({ cvUrl }: { cvUrl?: string }) {
 
                     {/* Roles */}
                     <div className="flex flex-col md:flex-row items-center gap-3 mb-12 font-bold tracking-[0.2em] uppercase text-xs">
-                        <span className="text-[#fbbf24]">Construction Manager</span>
+                        <span className="text-[#fbbf24]">{heroRole1 || 'Construction Manager'}</span>
                         <span className="hidden md:block text-white/40">|</span>
-                        <span className="text-white">Digital Product Lead</span>
+                        <span className="text-white">{heroRole2 || 'Digital Product Lead'}</span>
                     </div>
 
                     {/* CTA Buttons */}
