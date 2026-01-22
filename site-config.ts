@@ -54,7 +54,7 @@ export const siteConfig: SiteConfig = {
     // 🎨 BRANDING - Bruce Odhiambo
     // ============================================
     clientName: 'Bruce Odhiambo',
-    tagline: "Construction Manager's Portfolio",
+    tagline: "Sustainability Project Manager and M&E specialist",
     description: 'Portfolio of Bruce Odhiambo - Construction Manager & GIS Specialist',
     baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://bruce.fikanovaco.ke',
 
