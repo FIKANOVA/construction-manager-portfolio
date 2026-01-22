@@ -30,7 +30,7 @@
   --color-border: var(--border);
   --font-sans: var(--font-manrope);
 
-  --animate-marquee: marquee 120s linear infinite;
+  --animate-marquee: marquee 45s linear infinite;
 
   @keyframes marquee {
     from {
