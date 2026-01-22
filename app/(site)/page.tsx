@@ -1,12 +1,12 @@
 import Hero from '@/app/components/Hero'
 import ScrollReveal from '@/app/components/ScrollReveal'
 import Link from 'next/link'
-import { client, queries, type Profile } from '@/lib/sanity'
+import { client, queries, type Profile, type Experience } from '@/lib/sanity'
 
 export const revalidate = 60
 
-// Featured Experience for Homepage
-const featuredExperience = [
+// Fallback Experience for Homepage (used when Sanity is empty)
+const fallbackExperience = [
   {
     company: 'J365',
     role: 'Project Lead',
@@ -30,6 +30,14 @@ export default async function HomePage() {
   const profile = await client.fetch<Profile>(queries.profile)
   const cvUrl = profile?.cvFile
 
+  // Fetch experiences from Sanity
+  const sanityExperience = await client.fetch<Experience[]>(queries.allExperience)
+
+  // Use first 2 experiences from Sanity, or fallback if empty
+  const displayExperience = sanityExperience.length > 0
+    ? sanityExperience.slice(0, 2)
+    : fallbackExperience
+
   return (
     <>
       <Hero
@@ -48,8 +56,8 @@ export default async function HomePage() {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {featuredExperience.map((exp, index) => (
-              <ScrollReveal key={exp.company} delay={index * 0.1}>
+            {displayExperience.map((exp: any, index: number) => (
+              <ScrollReveal key={exp._id || exp.company} delay={index * 0.1}>
                 <div className="p-8 border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors">
                   <p className="text-xs tracking-[0.2em] text-amber-400 uppercase mb-2">
                     {exp.role}
