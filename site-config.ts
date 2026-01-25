@@ -55,7 +55,7 @@ export const siteConfig: SiteConfig = {
     // ============================================
     clientName: 'Bruce Odhiambo',
     tagline: "Sustainability Project Manager and M&E specialist",
-    description: 'Portfolio of Bruce Odhiambo - Construction Manager & GIS Specialist',
+    description: 'Portfolio of Bruce Odhiambo - Embracing Digital Innovation for Sustainable Project Management',
     baseUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://bruce.fikanovaco.ke',
 
     // ============================================
